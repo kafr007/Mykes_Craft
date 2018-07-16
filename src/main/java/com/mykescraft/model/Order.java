@@ -1,110 +1,128 @@
 package com.mykescraft.model;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
-@Entity
-@Table(name = "Orders", //
-        uniqueConstraints = { @UniqueConstraint(columnNames = "Order_Num") })
-public class Order implements Serializable {
- 
-    private static final long serialVersionUID = -2576670215015463100L;
- 
-    @Id
-    @Column(name = "ID", length = 50)
-    private String id;
- 
-    @Column(name = "Order_Date", nullable = false)
-    private Date orderDate;
- 
-    @Column(name = "Order_Num", nullable = false)
-    private int orderNum;
- 
-    @Column(name = "Amount", nullable = false)
-    private double amount;
- 
-    @Column(name = "Customer_Name", length = 255, nullable = false)
-    private String customerName;
- 
-    @Column(name = "Customer_Address", length = 255, nullable = false)
-    private String customerAddress;
- 
-    @Column(name = "Customer_Email", length = 128, nullable = false)
-    private String customerEmail;
- 
-    @Column(name = "Customer_Phone", length = 128, nullable = false)
-    private String customerPhone;
+public class Order {
+  
+  private String id;
+  private Date orderDate;
+  private int orderNum;
+  private double amount;
+  
+  @NotBlank
+  @Size(min = 3, max = 30)
+  private String customerFullName;
+  
+  @NotBlank
+  @Size(min = 3)
+  private String customerAddress;
+  
+  @NotBlank
+  @Email
+  private String customerEmail;
+  
+  @NotBlank
+  private String customerPhone;
+  
+  private List<Accessories> shoppingList;
+  
+  public Order() {
+    
+  }
 
-    public String getId() {
-      return id;
-    }
+  public Order(String id, Date orderDate, int orderNum, double amount, String customerFullName, String customerAddress,
+      String customerEmail, String customerPhone, List<Accessories> shoppingList) {
+    this.id = id;
+    this.orderDate = orderDate;
+    this.orderNum = orderNum;
+    this.amount = amount;
+    this.customerFullName = customerFullName;
+    this.customerAddress = customerAddress;
+    this.customerEmail = customerEmail;
+    this.customerPhone = customerPhone;
+    this.shoppingList = shoppingList;
+    this.shoppingList = new ArrayList<Accessories>();
+  }
 
-    public void setId(String id) {
-      this.id = id;
-    }
 
-    public Date getOrderDate() {
-      return orderDate;
-    }
 
-    public void setOrderDate(Date orderDate) {
-      this.orderDate = orderDate;
-    }
+  public String getId() {
+    return id;
+  }
 
-    public int getOrderNum() {
-      return orderNum;
-    }
+  public void setId(String id) {
+    this.id = id;
+  }
 
-    public void setOrderNum(int orderNum) {
-      this.orderNum = orderNum;
-    }
+  public Date getOrderDate() {
+    return orderDate;
+  }
 
-    public double getAmount() {
-      return amount;
-    }
+  public void setOrderDate(Date orderDate) {
+    this.orderDate = orderDate;
+  }
 
-    public void setAmount(double amount) {
-      this.amount = amount;
-    }
+  public int getOrderNum() {
+    return orderNum;
+  }
 
-    public String getCustomerName() {
-      return customerName;
-    }
+  public void setOrderNum(int orderNum) {
+    this.orderNum = orderNum;
+  }
 
-    public void setCustomerName(String customerName) {
-      this.customerName = customerName;
-    }
+  public double getAmount() {
+    return amount;
+  }
 
-    public String getCustomerAddress() {
-      return customerAddress;
-    }
+  public void setAmount(double amount) {
+    this.amount = amount;
+  }
 
-    public void setCustomerAddress(String customerAddress) {
-      this.customerAddress = customerAddress;
-    }
+  public String getCustomerFullName() {
+    return customerFullName;
+  }
 
-    public String getCustomerEmail() {
-      return customerEmail;
-    }
+  public void setCustomerFullName(String customerFullName) {
+    this.customerFullName = customerFullName;
+  }
 
-    public void setCustomerEmail(String customerEmail) {
-      this.customerEmail = customerEmail;
-    }
+  public String getCustomerAddress() {
+    return customerAddress;
+  }
 
-    public String getCustomerPhone() {
-      return customerPhone;
-    }
+  public void setCustomerAddress(String customerAddress) {
+    this.customerAddress = customerAddress;
+  }
 
-    public void setCustomerPhone(String customerPhone) {
-      this.customerPhone = customerPhone;
-    }
+  public String getCustomerEmail() {
+    return customerEmail;
+  }
 
-   
+  public void setCustomerEmail(String customerEmail) {
+    this.customerEmail = customerEmail;
+  }
 
+  public String getCustomerPhone() {
+    return customerPhone;
+  }
+
+  public void setCustomerPhone(String customerPhone) {
+    this.customerPhone = customerPhone;
+  }
+
+  public List<Accessories> getShoppingList() {
+    return shoppingList;
+  }
+
+  public void setShoppingList(List<Accessories> shoppingList) {
+    this.shoppingList = shoppingList;
+  }
+  
+  
 }
