@@ -1,6 +1,6 @@
 package com.mykescraft.model;
 
-public class Led extends Accessories {
+public class Led extends Product {
       private String color;
 
       public Led(String name, String type, String color, double price) {

@@ -1,11 +1,11 @@
 package com.mykescraft.model;
 
-public class Blade extends Accessories {
+public class Blade extends Product {
   private double length;
-  private double wallThickness;
+  private String wallThickness;
   private String tip;
   
-  public Blade(String name, String type, double length, double wallThickness, String tip, double price) {
+  public Blade(String name, String type, double length, String wallThickness, String tip, double price) {
     super(name, type, price);
     this.length = length;
     this.wallThickness = wallThickness;
@@ -20,11 +20,11 @@ public class Blade extends Accessories {
     this.length = length;
   }
 
-  public double getWallThickness() {
+  public String getWallThickness() {
     return wallThickness;
   }
 
-  public void setWallThickness(double wallThickness) {
+  public void setWallThickness(String wallThickness) {
     this.wallThickness = wallThickness;
   }
 

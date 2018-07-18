@@ -1,11 +1,21 @@
 package com.mykescraft.model;
 
-public abstract class Accessories {
+public abstract class Product {
   private String name;
   private double price;
   private String type;
   
-  public Accessories(String name, String type, double price) {
+  public Product() {
+    
+  }
+  
+  public Product(Product product) {
+    this.name = name;
+    this.price = price;
+    this.type = type;
+  }
+  
+  public Product(String name, String type, double price) {
     this.name = name;
     this.type = type;
     this.price = price;

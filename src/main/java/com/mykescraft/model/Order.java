@@ -30,14 +30,14 @@ public class Order {
   @NotBlank
   private String customerPhone;
   
-  private List<Accessories> shoppingList;
+  private List<Product> shoppingList;
   
   public Order() {
     
   }
 
   public Order(String id, Date orderDate, int orderNum, double amount, String customerFullName, String customerAddress,
-      String customerEmail, String customerPhone, List<Accessories> shoppingList) {
+      String customerEmail, String customerPhone, List<Product> shoppingList) {
     this.id = id;
     this.orderDate = orderDate;
     this.orderNum = orderNum;
@@ -47,7 +47,7 @@ public class Order {
     this.customerEmail = customerEmail;
     this.customerPhone = customerPhone;
     this.shoppingList = shoppingList;
-    this.shoppingList = new ArrayList<Accessories>();
+    this.shoppingList = new ArrayList<Product>();
   }
 
 
@@ -116,11 +116,11 @@ public class Order {
     this.customerPhone = customerPhone;
   }
 
-  public List<Accessories> getShoppingList() {
+  public List<Product> getShoppingList() {
     return shoppingList;
   }
 
-  public void setShoppingList(List<Accessories> shoppingList) {
+  public void setShoppingList(List<Product> shoppingList) {
     this.shoppingList = shoppingList;
   }
   
