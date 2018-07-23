@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="#{app.title}">"Myke's Craft</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/index.css}" href="../static/css/index.css" />
+</head>
+<header>
+	<h1>
+		Myke's<br />Craft
+	</h1>
+</header>
+
+<nav>
+	<a href="lightsabers.html" th:text="#{index.lightsabers}">Lightsabers</a> 
+	<a href="videos.html" th:text="#{index.videos}">Videos</a>
+	<a href="contact.html" th:text="#{index.contact}">Contact</a>
+</nav>
+
+<section class="teaser">
+	<div>
+		<h1>
+			<a href="lightsabers.html" th:text="#{index.lightsabers}">Lightsabers</a>
+		</h1>
+		<p th:text="#{index.lightsabers.info}">Customize your own ligthsaber! You can choose a hilt, leds,
+			soundcard, buttons and a blade, order, pay and own your unique
+			lightsaber.</p>
+
+		<div>
+			<h1>
+				<a href="videos.html" th:text="#{index.videos}">Videos</a>
+			</h1>
+			<p th:text="#{index.videos.info}">Watch my videos about lightsaber building.</p>
+		</div>
+		<div>
+			<h1>
+				<a href="contact.html" th:text="#{index.contact}">Contact</a>
+			</h1>
+			<p th:text="#{index.contact.info}">Feel free to contuct us, if you have any question.</p>
+		</div>
+</section>
+
+<footer>
+	<addr th:text="#{footer.address}"> 6800, Hódmezővásárhely Nagy Sándor street 3., Hungary </addr>
+	<div class="phone">
+		<i class="fa fa-phone" aria-hiddem="true"></i> <a
+			href="tel:+363012365645" th:text="#{footer.phone}">+3630-555-1212</a>
+	</div>
+</footer>
+
+</html>
