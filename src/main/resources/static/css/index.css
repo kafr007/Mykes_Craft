@@ -13,9 +13,10 @@
 }
 
 header h1 {
-	color: white;
+	color: rgb(192, 192, 192);
+	text-shadow: #EEEE00 0 0 10px, #FF0000 5px 5px 5px;
 	font-family: 'Holtwood One SC', serif;
-	font-size: 3em;
+	font-size: 3.55em;
 	font-style: italic;
 	font-weight: bold;
 	text-align: center;
@@ -27,14 +28,15 @@ header h1 {
 }
 
 header {
-	background-color: lightblue;
+	background-color: black;
 	height: 10em;
 	width: 100%;
-	background-image: url('https://i.imgur.com/WVeoDFb.jpg');
-	background-size: cover;
-	border-bottom: 6px solid blue;
+	background-image: url('/img/background.png');
+	background-repeat: no-repeat;
+	background-position: center top;
 	border-radius: 10px 10px 0px 0px;
 	box-shadow: 2px 2px 2px lightblue;
+	border-bottom: 2px rgb(192, 192, 192);
 }
 
 body {
@@ -84,10 +86,9 @@ header {
 }
 
 header h1 {
-	color: rgb(182, 204, 239);
 	margin: 0px;
 	position: absolute;
-	top: 50%;
+	top: 40%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 }
@@ -98,13 +99,9 @@ header h1 {
 	max-width: 50em;
 }
 
-.teaser a {
-	text-decoration: none;
-}
-
 .teaser div {
 	text-align: center;
-	width: 40%;
+	width: 33%;
 	margin: 0 auto;
 	padding: 1em;
 	min-width: 10em;
@@ -121,7 +118,7 @@ header h1 {
 .teaser h1 {
 	font-size: 1.5em;
 	font-weight: 700;
-	border-bottom: 4px solid lightblue;
+	border-bottom: 4px lightblue;
 	padding-bottom: 2px;
 }
 
