@@ -2,13 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title th:text="#{error.404}">404</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"
+	charset="UTF-8">
+<title th:text="#{app.title}">"Myke's Craft</title>
 <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"
 	href="../static/css/index.css" />
 </head>
-
 <header>
 	<h1 th:text="#{app.title}">Myke's Craft</h1>
 </header>
@@ -19,20 +18,6 @@
 		href="contact.html" th:text="#{index.contact}">Contact</a>
 </nav>
 
-<section class="teaser">
-	<div>
-		<h1 th:text="#{error.404}">404</h1>
-
-	</div>
-	<div>
-		<h1 th:text="#{error.error}">ERROR</h1>
-
-	</div>
-	<div>
-		<h1 th:text="#{error.message.404}">This isn't the page you are
-			looking for...</h1>
-	</div>
-</section>
 <footer>
 	<email th:text="#{footer.emailaddress}">mykescraft@gmail.com</email>
 	<div class="phone">

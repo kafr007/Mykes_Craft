@@ -16,4 +16,9 @@ public class IndexController {
 	public String videos() {
 		return "videos";
 	}
+	
+	@GetMapping("/contact.html")
+	public String contact() {
+		return "contact";
+	}
 }
