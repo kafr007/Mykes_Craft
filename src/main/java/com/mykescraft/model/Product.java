@@ -5,6 +5,7 @@ public abstract class Product {
   private double price;
   private String type;
   
+  
   public Product() {
     
   }
@@ -19,6 +20,7 @@ public abstract class Product {
     this.name = name;
     this.type = type;
     this.price = price;
+     
   }
 
   public String getName() {
@@ -44,6 +46,7 @@ public abstract class Product {
   public void setType(String type) {
     this.type = type;
   }
+
 
   
 }
