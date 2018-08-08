@@ -11,32 +11,23 @@ import javax.persistence.ManyToOne;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn (name= "Product_Type")
+@DiscriminatorColumn(name = "Product_Type")
 public abstract class Product {
-	
+
 	@GeneratedValue
 	@Id
 	private Long id;
-	
+
 	@Column
 	private String name;
-	
-	@ManyToOne
-	private Order order;
-	
+
 	@Column
 	private double price;
-	
+
 	@Column
 	private String type;
-	
-	public Product() {
-	}
 
-	public Product(Product product) {
-		this.name = name;
-		this.price = price;
-		this.type = type;
+	public Product() {
 	}
 
 	public Product(String name, String type, double price) {
