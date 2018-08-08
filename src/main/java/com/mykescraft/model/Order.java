@@ -1,26 +1,33 @@
 package com.mykescraft.model;
 
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Orders {
+@Table(name="ORDER_")
+public class Order {
 
 	@GeneratedValue
 	@Id
 	private Long id;
 
-	@ManyToMany
-	private List<Product> orderedList;
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE} , fetch = FetchType.LAZY)
+    @JoinTable(name = "ORDER_PRODUCTS", joinColumns = {@JoinColumn(name = "ORDER_ID")},inverseJoinColumns = {@JoinColumn(name = "PRODUCT_ID")})
+    private Set<Product> products;
 		
 	@Column
 	private Date orderDate;
@@ -43,13 +50,7 @@ public class Orders {
     @NotBlank
     private String customerPhone;
 	
-	public List<Product> getOrderedList() {
-		return orderedList;
-	}
-
-	public void setOrderedList(List<Product> orderedList) {
-		this.orderedList = orderedList;
-	}
+	
 
 	public String getCustomerName() {
 		return customerName;
@@ -83,7 +84,7 @@ public class Orders {
 		this.customerPhone = customerPhone;
 	}
 
-	public Orders() {
+	public Order() {
 		
 	}
 
