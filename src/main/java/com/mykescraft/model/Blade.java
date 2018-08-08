@@ -1,40 +1,51 @@
 package com.mykescraft.model;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("Blade")
 public class Blade extends Product {
-  private double length;
-  private String wallThickness;
-  private String tip;
-  
-  public Blade(String name, String type, double length, String wallThickness, String tip, double price) {
-    super(name, type, price);
-    this.length = length;
-    this.wallThickness = wallThickness;
-    this.tip = tip;
-  }
+	@Column
+	private double length;
+	@Column
+	private String wallThickness;
+	@Column
+	private String tip;
 
-  public double getLength() {
-    return length;
-  }
+	public Blade() {
+	}
 
-  public void setLength(double length) {
-    this.length = length;
-  }
+	public Blade(String name, String type, double length, String wallThickness, String tip, double price) {
+		super(name, type, price);
+		this.length = length;
+		this.wallThickness = wallThickness;
+		this.tip = tip;
+	}
 
-  public String getWallThickness() {
-    return wallThickness;
-  }
+	public double getLength() {
+		return length;
+	}
 
-  public void setWallThickness(String wallThickness) {
-    this.wallThickness = wallThickness;
-  }
+	public void setLength(double length) {
+		this.length = length;
+	}
 
-  public String getTip() {
-    return tip;
-  }
+	public String getWallThickness() {
+		return wallThickness;
+	}
 
-  public void setTip(String tip) {
-    this.tip = tip;
-  }
-  
-  
+	public void setWallThickness(String wallThickness) {
+		this.wallThickness = wallThickness;
+	}
+
+	public String getTip() {
+		return tip;
+	}
+
+	public void setTip(String tip) {
+		this.tip = tip;
+	}
+
 }

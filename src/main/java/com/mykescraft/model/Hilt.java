@@ -1,11 +1,19 @@
 package com.mykescraft.model;
 
-public class Hilt extends Product {
-	private byte[] image;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
-	public Hilt(String name, String type, double price, byte[] image) {
+@Entity
+@DiscriminatorValue("Hilt")
+public class Hilt extends Product {
+	private String imageUrl;
+	
+	public Hilt() {
+	}
+
+	public Hilt(String name, String type, double price, String imageUrl) {
 		super(name, type, price);
-		this.image = image;
+		this.imageUrl = imageUrl;
 	}
 	
 	public Hilt(String name, String type, double price) {
@@ -14,11 +22,11 @@ public class Hilt extends Product {
 
 
 
-	public byte[] getImage() {
-		return image;
+	public String getImage() {
+		return imageUrl;
 	}
 
-	public void setImage(byte[] image) {
-		this.image = image;
+	public void setImage(String image) {
+		this.imageUrl = image;
 	}
 }
