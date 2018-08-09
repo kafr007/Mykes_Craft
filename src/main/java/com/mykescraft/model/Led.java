@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("Led")
-public class Led extends Product {
+public class Led extends Accessory {
 
 	@Column
 	private String color;
@@ -14,8 +14,8 @@ public class Led extends Product {
 	public Led() {
 	}
 
-	public Led(String name, String type, String color, double price) {
-		super(name, type, price);
+	public Led(String name, String color, double price) {
+		super(name, price);
 		this.color = color;
 	}
 

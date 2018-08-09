@@ -5,13 +5,15 @@ import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("Button")
-public class Button extends Product {
+public class Button extends Accessory {
 	
 	 public Button() {   
 	  }
+
+	public Button(String name, double price) {
+		super(name, price);
+	}
   
-  public Button(String name, String type, double price) {
-    super(name, type, price);
-  }
+  
 
 }

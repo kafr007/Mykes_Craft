@@ -5,13 +5,13 @@ import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("Soundcard")
-public class Soundcard extends Product {
+public class Soundcard extends Accessory {
 
 	public Soundcard() {
 	}
 
-	public Soundcard(String name, String type, double price) {
-		super(name, type, price);
+	public Soundcard(String name, double price) {
+		super(name, price);
 	}
 
 

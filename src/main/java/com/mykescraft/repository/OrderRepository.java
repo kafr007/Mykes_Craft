@@ -8,6 +8,6 @@ public interface OrderRepository {
 	
 	List<Order> findAllOrder();
 	
-	Order findOrderById();
+	Order findOrderById(Long id);
 
 }

@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("Blade")
-public class Blade extends Product {
+public class Blade extends Accessory {
 	@Column
 	private double length;
 	@Column
@@ -17,8 +17,8 @@ public class Blade extends Product {
 	public Blade() {
 	}
 
-	public Blade(String name, String type, double length, String wallThickness, String tip, double price) {
-		super(name, type, price);
+	public Blade(String name, double length, String wallThickness, String tip, double price) {
+		super(name,price);
 		this.length = length;
 		this.wallThickness = wallThickness;
 		this.tip = tip;

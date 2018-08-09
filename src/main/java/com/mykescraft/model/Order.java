@@ -26,8 +26,8 @@ public class Order {
 	private Long id;
 
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE} , fetch = FetchType.LAZY)
-    @JoinTable(name = "ORDER_PRODUCTS", joinColumns = {@JoinColumn(name = "ORDER_ID")},inverseJoinColumns = {@JoinColumn(name = "PRODUCT_ID")})
-    private Set<Product> products;
+    @JoinTable(name = "ORDER_ACCESSORIES", joinColumns = {@JoinColumn(name = "ORDER_ID")},inverseJoinColumns = {@JoinColumn(name = "ACCESSORY_ID")})
+    private Set<Accessory> products;
 		
 	@Column
 	private Date orderDate;

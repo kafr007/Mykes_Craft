@@ -5,19 +5,15 @@ import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("Hilt")
-public class Hilt extends Product {
+public class Hilt extends Accessory {
 	private String imageUrl;
 	
 	public Hilt() {
 	}
 
-	public Hilt(String name, String type, double price, String imageUrl) {
-		super(name, type, price);
+	public Hilt(String name, double price, String imageUrl) {
+		super(name, price);
 		this.imageUrl = imageUrl;
-	}
-	
-	public Hilt(String name, String type, double price) {
-		super(name, type, price);
 	}
 
 

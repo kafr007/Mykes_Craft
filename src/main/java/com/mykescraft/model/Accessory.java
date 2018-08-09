@@ -11,8 +11,8 @@ import javax.persistence.ManyToOne;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "Product_Type")
-public abstract class Product {
+@DiscriminatorColumn(name = "Accessory_Type")
+public abstract class Accessory {
 
 	@GeneratedValue
 	@Id
@@ -25,14 +25,13 @@ public abstract class Product {
 	private double price;
 
 	@Column
-	private String type;
+	private String imageUrl;
 
-	public Product() {
+	public Accessory() {
 	}
 
-	public Product(String name, String type, double price) {
+	public Accessory(String name, double price) {
 		this.name = name;
-		this.type = type;
 		this.price = price;
 
 	}
@@ -61,12 +60,12 @@ public abstract class Product {
 		this.price = price;
 	}
 
-	public String getType() {
-		return type;
+	public String getImageUrl() {
+		return imageUrl;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
 }

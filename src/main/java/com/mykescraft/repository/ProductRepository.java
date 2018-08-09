@@ -6,8 +6,8 @@ import com.mykescraft.model.*;
 
 public interface ProductRepository {
 	
-	List<Product> findAllProducts();
+	List<Accessory> findAllProducts();
 	
-	Product findProductById();
+	Accessory findProductById(Long id);
 	
 }
