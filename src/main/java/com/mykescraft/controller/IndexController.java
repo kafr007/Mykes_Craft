@@ -36,8 +36,8 @@ public class IndexController {
 	private ArrayList<Hilt> getHilts(){
 		ArrayList<Hilt> hilts = new ArrayList<>();
 		
-		Hilt hilt1 = new Hilt("hilt1", "hilt", 25.23);
-		Hilt hilt2 = new Hilt("hilt2", "hilt", 30.00);
+		Hilt hilt1 = new Hilt("hilt1", 25.23, "imageurl");
+		Hilt hilt2 = new Hilt("hilt2", 30.00, "imageurl");
 		
 		hilts.add(hilt1);
 		hilts.add(hilt2);

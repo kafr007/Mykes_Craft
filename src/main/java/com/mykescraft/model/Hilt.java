@@ -18,11 +18,11 @@ public class Hilt extends Accessory {
 
 
 
-	public String getImage() {
+	public String getImageUrl() {
 		return imageUrl;
 	}
 
-	public void setImage(String image) {
-		this.imageUrl = image;
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 }
