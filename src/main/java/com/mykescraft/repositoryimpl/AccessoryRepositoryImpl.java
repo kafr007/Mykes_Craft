@@ -27,7 +27,7 @@ public class AccessoryRepositoryImpl implements AccessoryRepository {
 	@Override
 	public List<Accessory> findAllProducts() {
 		List<Accessory> list = this.jdbcTemplate.query(
-				"select name, price from accessory",
+				"select name, price from accessories",
 				new RowMapper<Accessory>() {
 					public Accessory mapRow(ResultSet rs, int rowNum) throws SQLException{
 						Accessory ac = new Accessory() {
@@ -49,7 +49,7 @@ public class AccessoryRepositoryImpl implements AccessoryRepository {
 	@Override
 	public List<Blade> findAllBlades() {
 		List<Blade> list = this.jdbcTemplate.query(
-				"select name, price, length, wallthickness,tip from accessory",
+				"select name, price, length, wallthickness,tip from accessories",
 				new RowMapper<Blade>() {
 					public Blade mapRow(ResultSet rs, int rowNum) throws SQLException{
 						Blade blade = new Blade();
@@ -68,7 +68,7 @@ public class AccessoryRepositoryImpl implements AccessoryRepository {
 	@Override
 	public List<Button> findAllButtons() {
 		List<Button> list = this.jdbcTemplate.query(
-				"select name, price from accessory",
+				"select name, price from accessories",
 				new RowMapper<Button>() {
 					public Button mapRow(ResultSet rs, int rowNum) throws SQLException{
 						Button button = new Button();
@@ -83,13 +83,13 @@ public class AccessoryRepositoryImpl implements AccessoryRepository {
 	@Override
 	public List<Hilt> findAllHilts() {
 		List<Hilt> list = this.jdbcTemplate.query(
-				"select name, price from accessory",
+				"select name, price, image_url from accessories",
 				new RowMapper<Hilt>() {
 					public Hilt mapRow(ResultSet rs, int rowNum) throws SQLException{
 						Hilt hilt = new Hilt();
 						hilt.setName(rs.getString("name"));
 						hilt.setPrice(rs.getDouble("price"));
-						hilt.setImageUrl("imageUrl");
+						hilt.setImageUrl(rs.getString("image_url"));
 						return hilt;
 					}
 				});

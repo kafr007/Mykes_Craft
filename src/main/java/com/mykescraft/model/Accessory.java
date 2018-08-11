@@ -4,17 +4,18 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 
-@Entity
+@Entity(name="accessories")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "Accessory_Type")
 public abstract class Accessory {
 
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	private Long id;
 
@@ -24,7 +25,7 @@ public abstract class Accessory {
 	@Column
 	private double price;
 
-	@Column
+	@Column(name="image_url")
 	private String imageUrl;
 
 	public Accessory() {

@@ -27,13 +27,9 @@ public class IndexController {
 		return "contact";
 	}
 	
-	@GetMapping("/lightsabers.html")
-	public String lightsaber(Model model) {
-		model.addAttribute("hilts", getHilts());
-		return "lightsabers";
-	}
 	
-	private ArrayList<Hilt> getHilts(){
+	
+	/*private ArrayList<Hilt> getHilts(){
 		ArrayList<Hilt> hilts = new ArrayList<>();
 		
 		Hilt hilt1 = new Hilt("hilt1", 25.23, "imageurl");
@@ -43,7 +39,7 @@ public class IndexController {
 		hilts.add(hilt2);
 		
 		return hilts;
-	}
+	}*/
 	
 	
 }
