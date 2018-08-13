@@ -13,12 +13,10 @@ public class Blade extends Accessory {
 	@Column
 	private double length;
 	
-	@Column(columnDefinition="enum('thin', 'thick')" )
-	@Enumerated(EnumType.STRING)
+	@Column
 	private String wallThickness;
 	
-	@Column(columnDefinition="enum('round', 'bullet')" )
-	@Enumerated(EnumType.STRING)
+	@Column
 	private String tip;
 
 	public Blade() {

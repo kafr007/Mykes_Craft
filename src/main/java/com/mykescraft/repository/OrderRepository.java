@@ -9,5 +9,7 @@ public interface OrderRepository {
 	List<Order> findAllOrder();
 	
 	Order findOrderById(Long id);
-
+	
+	void saveOrder(Order order);
+	
 }

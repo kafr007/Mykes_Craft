@@ -27,19 +27,4 @@ public class IndexController {
 		return "contact";
 	}
 	
-	
-	
-	/*private ArrayList<Hilt> getHilts(){
-		ArrayList<Hilt> hilts = new ArrayList<>();
-		
-		Hilt hilt1 = new Hilt("hilt1", 25.23, "imageurl");
-		Hilt hilt2 = new Hilt("hilt2", 30.00, "imageurl");
-		
-		hilts.add(hilt1);
-		hilts.add(hilt2);
-		
-		return hilts;
-	}*/
-	
-	
 }

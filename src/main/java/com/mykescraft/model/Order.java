@@ -27,7 +27,7 @@ public class Order {
 
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE} , fetch = FetchType.LAZY)
     @JoinTable(name = "ORDERS_ACCESSORIES", joinColumns = {@JoinColumn(name = "ORDER_ID")},inverseJoinColumns = {@JoinColumn(name = "ACCESSORY_ID")})
-    private Set<Accessory> products;
+    private Set<Accessory> accessories;
 		
 	@Column
 	private Date orderDate;
@@ -51,6 +51,10 @@ public class Order {
     private String customerPhone;
 	
 	
+    public Order(Date orderDate, Set<Accessory> boughtAccessories) {
+    	this.orderDate=orderDate;
+    	this.accessories = boughtAccessories;
+    }
 
 	public String getCustomerName() {
 		return customerName;
@@ -104,7 +108,12 @@ public class Order {
 	public void setOrderDate(Date orderDate) {
 		this.orderDate = orderDate;
 	}
-	
-	
 
+	public Set<Accessory> getAccessories() {
+		return accessories;
+	}
+
+	public void setAccessories(Set<Accessory> accessories) {
+		this.accessories = accessories;
+	}
 }
