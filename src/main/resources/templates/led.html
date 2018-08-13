@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"
+	charset="UTF-8">
+<title th:text="#{app.title}">"Myke's Craft</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"
+	href="../static/css/index.css" />
+</head>
+<header>
+	<h1 th:text="#{app.title}">Myke's Craft</h1>
+</header>
+
+<nav>
+	<a href="lightsabers.html" th:text="#{index.lightsabers}">Lightsabers</a>
+	<a href="videos.html" th:text="#{index.videos}">Videos</a> <a
+		href="contact.html" th:text="#{index.contact}">Contact</a>
+</nav>
+<div>
+<h1>
+2. step: Choose a blade!
+</h1>
+</div>
+<form name="urlap4" method="post" action="">
+<select name="lista">
+<option  selected> Első elem
+<option> 2. elem
+<option> 3. elem
+<option> 4. elem</select>
+   
+  <br>
+  <input type="submit" name="submit" value="Next" >				
+</form>
+
+<footer>
+	<email th:text="#{footer.emailaddress}">mykescraft@gmail.com</email>
+	<div class="phone">
+		<i class="fa fa-phone" aria-hiddem="true"></i> <a
+			href="tel:+363012365645" th:text="#{footer.phone}">+3630-555-1212</a>
