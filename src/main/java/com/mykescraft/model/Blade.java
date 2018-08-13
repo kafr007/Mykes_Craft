@@ -3,15 +3,22 @@ package com.mykescraft.model;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 @Entity
 @DiscriminatorValue("Blade")
 public class Blade extends Accessory {
+	
 	@Column
 	private double length;
-	@Column
+	
+	@Column(columnDefinition="enum('thin', 'thick')" )
+	@Enumerated(EnumType.STRING)
 	private String wallThickness;
-	@Column
+	
+	@Column(columnDefinition="enum('round', 'bullet')" )
+	@Enumerated(EnumType.STRING)
 	private String tip;
 
 	public Blade() {

@@ -6,8 +6,7 @@ import javax.persistence.Entity;
 @Entity
 @DiscriminatorValue("Hilt")
 public class Hilt extends Accessory {
-	
-	
+		
 	public Hilt() {
 	}
 

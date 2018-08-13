@@ -3,12 +3,15 @@ package com.mykescraft.model;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 @Entity
 @DiscriminatorValue("Led")
 public class Led extends Accessory {
 
-	@Column
+	@Column(columnDefinition="enum('red', 'white', 'blue', 'green', 'purple')" )
+	@Enumerated(EnumType.STRING)
 	private String color;
 
 	public Led() {
