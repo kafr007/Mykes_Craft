@@ -22,7 +22,7 @@
 <h1 th:text="#{hilt.info}" text-align="center">Válassz egy markolatot</h1>
 </div>
 
-<form method="post">
+<form name="chooseahilt" th:action="@{/hilt}" th:object="${hilt}" method="post">
 <section class="teaser" th:each="hilt : ${hilts}">
 	<div>
 		<h1 th:text="${hilt.name}">
@@ -30,7 +30,7 @@
 		</h1>
 		<img th:src="${hilt.imageUrl}" height="150" width="200">
 		<p th:text="${hilt.price}"> Ez az ára a terméknek</p>
-		<input type="submit" th:value="#{add.to.cart}"/>
+		<input type="submit" th:value="#{add.to.cart}" th:field="*{id}"/>
 	</div>
 
 </section>
