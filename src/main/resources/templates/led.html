@@ -17,7 +17,7 @@
 		href="videos" th:text="#{index.videos}">Videos</a> <a href="contact"
 		th:text="#{index.contact}">Contact</a>
 </nav>
-<div style="text-align: center">
+<div class="teaser"style="text-align: center">
 	<h1 th:text="#{led.info}" text-align="center">Válassz egy ledet</h1>
 </div>
 <section class="teaser" th:each="led : ${leds}">

@@ -1,12 +1,12 @@
 package com.mykescraft.controller;
 
 import java.util.ArrayList;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,9 +19,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mykescraft.model.Accessory;
+import com.mykescraft.model.Customer;
 import com.mykescraft.model.Hilt;
 import com.mykescraft.model.Led;
+import com.mykescraft.model.Order;
 import com.mykescraft.serviceimpl.AccessoryServiceImpl;
+import com.mykescraft.serviceimpl.OrderServiceImpl;
 import com.mykescraft.serviceimpl.ShoppingCartImpl;
 
 @Controller
@@ -34,6 +37,9 @@ public class ChooseAccessoriesController {
 
 	@Autowired
 	private AccessoryServiceImpl accessoryService;
+	
+	@Autowired
+	private OrderServiceImpl orderService;
 
 	@GetMapping("/hilt")
 	public String displayHilt(Model model) {
@@ -49,15 +55,13 @@ public class ChooseAccessoriesController {
 		log.info(hilt.getName());
 		log.info(""+hilt.getPrice());
 		shoppingCartService.addProductToCart(hilt);;
-		log.info(shoppingCartService.getList().isEmpty()?"Üres":"Nem üres");
+		log.info("" + shoppingCartService.getList().size());
 		log.info(""+ shoppingCartService.getAmount());
 		return "redirect:/led";
 	}
 	 
 	 @GetMapping("/led")
 		public String displayLed(Model model) {
-		 	Led led = new Led();
-		 	model.addAttribute("led", led);
 			model.addAttribute("leds", accessoryService.findAllLeds());
 			
 			log.info(""+accessoryService.findAllLeds().size());
@@ -69,10 +73,42 @@ public class ChooseAccessoriesController {
 			log.info("" + id);
 			Led led = accessoryService.findLedById(Integer.parseInt(id));
 			log.info(led.getName());
-			log.info(""+led.getPrice());
+			log.info("" +led.getPrice());
 			shoppingCartService.addProductToCart(led);;
-			log.info(shoppingCartService.getList().isEmpty()?"Üres":"Nem üres");
+			log.info(""+ shoppingCartService.getList().size());
 			log.info(""+ shoppingCartService.getAmount());
-			return "redirect:/contact";
+			return "redirect:/cartconfirmation";
 		}
+	 
+	 @GetMapping("/cartconfirmation")
+		public String displayCart(Model model) {
+			model.addAttribute("accessories", shoppingCartService.getList());
+			model.addAttribute("amount", shoppingCartService.getAmount());
+			log.info(""+ shoppingCartService.getList());
+			return "cartconfirmation";
+		}
+	 
+	 @GetMapping(value = {"/customer-form"})
+		public String getCustomerData(Model model) {
+		 	model.addAttribute("customer", new Customer());
+			return "customer-form";
+		}
+
+		@PostMapping(value = {"/customerdata"})
+		public String customerData(@ModelAttribute Customer customer) {
+			Order order = new Order();
+			customer.setOrder(order);
+			//orderService.saveOrder(order);
+			log.debug(customer.getName());
+			log.debug(customer.getCustomerAddress());
+			log.debug(customer.getEmail());
+			log.debug(customer.getPhoneNumber());
+			log.debug(customer.getOrder().toString());
+			return "redirect:thankyou";
+		}
+	 
+		 @GetMapping(value = {"/thankyou"})
+			public String thankYouOrder(Model model) {
+				return "thankyou";
+			}
 }

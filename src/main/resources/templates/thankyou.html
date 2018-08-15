@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"
+	charset="UTF-8">
+<title th:text="#{app.title}">"Myke's Craft</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"
+	href="../static/css/index.css" />
+</head>
+<header>
+	<h1 th:text="#{app.title}">Myke's Craft</h1>
+</header>
+
+<nav>
+	<a href="hilt" th:text="#{index.lightsabers}">Lightsabers</a>
+	<a href="videos" th:text="#{index.videos}">Videos</a> <a
+		href="contact" th:text="#{index.contact}">Contact</a>
+</nav>
+
+
+	<div class="teaser" style="text-align: center">
+		<h1>
+			Köszönjük a rendelésed, hamarosan felvesszük veled e-mailen a kapcsolatot!<br>
+			Addig is, iratkozz fel youtube csatornánkra.
+			<a href="https://www.youtube.com/channel/UC5l7P6gS3d-stnpwtJmoJhg" th:text="#{app.title}">Lightsabers</a>
+		</h1>
+		
+	</div>
+
+
+<footer>
+	<p th:text="#{footer.emailaddress}">mykescraft@gmail.com</p>
+	<div class="phone">
+		<i class="fa fa-phone" aria-hiddem="true"></i> <a
+			href="tel:+363012365645" th:text="#{footer.phone}">+3630-555-1212</a>
+	</div>
+</footer>
+
+</html>

@@ -21,6 +21,14 @@ public class Customer {
 	@Id
 	private int id;
 
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+
 	@Column
 	@Size(min = 3, max = 30)
 	@NotBlank

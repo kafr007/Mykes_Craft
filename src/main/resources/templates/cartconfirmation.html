@@ -14,28 +14,29 @@
 </header>
 
 <nav>
-	<a href="hilt" th:text="#{index.lightsabers}">Lightsabers</a> <a
-		href="videos" th:text="#{index.videos}">Videos</a> <a href="contact"
+	<a href="hilt" th:text="#{index.lightsabers}">Lightsabers</a> 
+	<a href="videos" th:text="#{index.videos}">Videos</a> <a href="contact"
 		th:text="#{index.contact}">Contact</a>
 </nav>
 <div class="teaser" style="text-align: center">
-	<h1 th:text="#{hilt.info}">Válassz egy
-		markolatot</h1>
+	<h1 th:text="#{cart.confirmation.info}">Válassz egy markolatot</h1>
 </div>
+<div class="teaser" style="text-align: center">
+	<table border="1" style="width: 300px">
+		<th:block th:each="accessory : ${accessories}">
+			<tr>
+				<td th:text="${accessory.name}">A Smoke Test'</td>
+				<td th:text="${accessory.price}">A Smoke Test'</td>
+			</tr>
+		</th:block>
 
-
-<section class="teaser" th:each="hilt : ${hilts}">
-	<div>
-		<h1 th:text="${hilt.name}">Ez a neve a terméknek</h1>
-		<img th:src="${hilt.imageUrl}" height="150" width="200">
-		<p th:text="${hilt.price}">Ez az ára a terméknek</p>
-		<p th:text="${hilt.id}">Ez az ára a terméknek</p>
-		
-		<a th:text="#{add.to.cart}"th:href="@{|/chooseahilt?id=${hilt.id}|}">Buy Now</a>
-		</div>
-
-</section>
-
+	</table>
+	<p th:text="${amount}">
+	<a href="/customer" th:text="#{cart.confirmation}">Confirm</a>
+</div>
+<div class="teaser" style="text-align: center">
+ <a href="customer-form" th:text="#{cart.confirmation}">Confirm</a>
+ </div>
 <footer>
 	<p th:text="#{footer.emailaddress}">mykescraft@gmail.com</p>
 	<div class="phone">

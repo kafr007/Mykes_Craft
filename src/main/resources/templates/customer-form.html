@@ -17,22 +17,14 @@
 	<a href="videos" th:text="#{index.videos}">Videos</a> <a
 		href="contact" th:text="#{index.contact}">Contact</a>
 </nav>
-
-<div>
-	<iframe width="560" height="315" align="middle"
-		src="https://www.youtube.com/embed/ledF1xNNx5k" frameborder="0"
-		allow="autoplay; encrypted-media" allowfullscreen></iframe>
-</div>
-<div>
-	<iframe width="560" height="315"
-		src="https://www.youtube.com/embed/JhTriqUk_zw" frameborder="0"
-		allow="autoplay; encrypted-media" allowfullscreen></iframe>
-</div>
-<div>
-	<iframe width="560" height="315"
-		src="https://www.youtube.com/embed/b-BxllgcLwI" frameborder="0"
-		allow="autoplay; encrypted-media" allowfullscreen></iframe>
-</div>
+<form name="customerdata" th:action="@{/customerdata}" th:object="${customer}" method="post" class="form-signin">
+			<h2 class="form-signin-heading">Kérlek add meg az adataid</h2>
+				<input type="text" id="name" name="name" th:field="*{name}" class="form-control" placeholder="Teljes név"  /> 
+		 	    <input type="text" id="email" name="email" th:field="*{email}" class="form-control" placeholder="E-mail cím"  /> 
+			    <input type="text" id="customerAddress" name="customerAddress" th:field="*{customerAddress}"  class="form-control" placeholder="Cím" />
+			    <input type="text" id="phoneNumber" name="phoneNumber" th:field="*{phoneNumber}"  class="form-control" placeholder="Telszám" />
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Rendelés</button>
+		</form>
 
 <footer>
 	<p th:text="#{footer.emailaddress}">mykescraft@gmail.com</p>
