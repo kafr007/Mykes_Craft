@@ -17,12 +17,12 @@ public class IndexController {
 	}
 
 	
-	@GetMapping("/videos.html")
+	@GetMapping("/videos")
 	public String videos() {
 		return "videos";
 	}
 	
-	@GetMapping("/contact.html")
+	@GetMapping("/contact")
 	public String contact() {
 		return "contact";
 	}

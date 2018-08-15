@@ -30,6 +30,7 @@ public class AccessoryRepositoryImpl implements AccessoryRepository {
 		@Override
 		public Hilt mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Hilt hilt = new Hilt();
+			hilt.setId(rs.getInt("id"));
 			hilt.setName(rs.getString("name"));
 			hilt.setPrice(rs.getDouble("price"));
 			hilt.setImageUrl(rs.getString("image_url"));
@@ -43,6 +44,7 @@ public class AccessoryRepositoryImpl implements AccessoryRepository {
 		@Override
 		public Button mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Button button = new Button();
+			button.setId(rs.getInt("id"));
 			button.setName(rs.getString("name"));
 			button.setPrice(rs.getDouble("price"));
 			button.setImageUrl(rs.getString("image_url"));
@@ -56,6 +58,7 @@ public class AccessoryRepositoryImpl implements AccessoryRepository {
 		@Override
 		public Blade mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Blade blade = new Blade();
+			blade.setId(rs.getInt("id"));
 			blade.setName(rs.getString("name"));
 			blade.setPrice(rs.getDouble("price"));
 			blade.setImageUrl(rs.getString("image_url"));
@@ -72,6 +75,7 @@ public class AccessoryRepositoryImpl implements AccessoryRepository {
 		@Override
 		public Led mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Led led = new Led();
+			led.setId(rs.getInt("id"));
 			led.setName(rs.getString("name"));
 			led.setPrice(rs.getDouble("price"));
 			led.setImageUrl(rs.getString("image_url"));
@@ -86,6 +90,7 @@ public class AccessoryRepositoryImpl implements AccessoryRepository {
 		@Override
 		public Soundcard mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Soundcard soundcard = new Soundcard();
+			soundcard.setId(rs.getInt("id"));
 			soundcard.setName(rs.getString("name"));
 			soundcard.setPrice(rs.getDouble("price"));
 			soundcard.setImageUrl(rs.getString("image_url"));
@@ -95,67 +100,67 @@ public class AccessoryRepositoryImpl implements AccessoryRepository {
 	};
 
 	@Override
-	public List<Blade> findAllBlades() {
-		List<Blade> list = this.jdbcTemplate.query(
-				"select name, price, image_url, tip, length, wallthickness from accessories",bladeMapper);
+	public ArrayList<Blade> findAllBlades() {
+		ArrayList<Blade> list = (ArrayList<Blade>) this.jdbcTemplate.query(
+				"select id, name, price, image_url, tip, length, wallthickness from accessories where accessory_type='blade'",bladeMapper);
 		return list;
 	}
 
 	@Override
-	public List<Button> findAllButtons() {
-		List<Button> list = this.jdbcTemplate.query(
-				"select name, price, image_url from accessories", buttonMapper);
+	public ArrayList<Button> findAllButtons() {
+		ArrayList<Button> list = (ArrayList<Button>) this.jdbcTemplate.query(
+				"select id, name, price, image_url from accessories where accessory_type='button'", buttonMapper);
 		return list;
 	}
 
 	@Override
-	public List<Hilt> findAllHilts() {
-		List<Hilt> list = this.jdbcTemplate.query(
-				"select name, price, image_url from accessories", hiltMapper);
+	public ArrayList<Hilt> findAllHilts() {
+		ArrayList<Hilt> list = (ArrayList<Hilt>) this.jdbcTemplate.query(
+				"select id, name, price, image_url from accessories where accessory_type='hilt'", hiltMapper);
 		return list;
 	}
 
 	@Override
-	public List<Led> findAllLeds() {
-		List<Led> list = this.jdbcTemplate.query(
-				"select name, price, image_url, color from accessories", ledMapper);
+	public ArrayList<Led> findAllLeds() {
+		ArrayList<Led> list = (ArrayList<Led>) this.jdbcTemplate.query(
+				"select id, name, price, image_url, color from accessories where accessory_type='led'", ledMapper);
 		return list;
 	}
 
 	@Override
-	public List<Soundcard> findAllSoundcards() {
-		List<Soundcard> list = this.jdbcTemplate.query(
-				"select name, price, image_url from accessories", soundcardMapper);
+	public ArrayList<Soundcard> findAllSoundcards() {
+		ArrayList<Soundcard> list = (ArrayList<Soundcard>) this.jdbcTemplate.query(
+				"select id, name, price, image_url from accessories where accessory_type='soundcard'", soundcardMapper);
 		return list;
 	}
 
 	@Override
-	public Blade findBladeById(Long id) {
-		String sql = "SELECT * FROM ACCESSORIES WHERE ID = ?";
-		return (Blade) jdbcTemplate.query(sql, bladeMapper, id);
+	public Blade findBladeById(int id) {
+		String sql = "select id, name, price, image_url, tip, length, wallthickness from accessories WHERE ID = ?";
+		return (Blade) jdbcTemplate.queryForObject(sql, bladeMapper, id);
 	}
 
 	@Override
-	public Button findButtonById(Long id) {
-		String sql = "SELECT * FROM ACCESSORIES WHERE ID = ?";
-		return (Button) jdbcTemplate.query(sql, buttonMapper, id);
+	public Button findButtonById(int id) {
+		String sql = "select id, name, price, image_url from accessories WHERE ID = ?";
+		return (Button) jdbcTemplate.queryForObject(sql, buttonMapper, id);
 	}
 	
-	public Hilt findHiltById(Long id) {
-		String sql = "SELECT * FROM ACCESSORIES WHERE ID = ?";
-		return (Hilt) jdbcTemplate.query(sql, hiltMapper, id);
+	public Hilt findHiltById(int id) {
+		String sql = "select id, name, price, image_url from accessories WHERE ID = ?";
+		return (Hilt) jdbcTemplate.queryForObject(sql, hiltMapper, id);
 	}
 
 	@Override
-	public Led findLedById(Long id) {
-		String sql = "SELECT * FROM ACCESSORIES WHERE ID = ?";
-		return (Led) jdbcTemplate.query(sql, ledMapper, id);
+	public Led findLedById(int id) {
+		String sql = "select id, name, price, image_url, color from accessories WHERE ID = ?";
+		return (Led) jdbcTemplate.queryForObject(sql, ledMapper, id);
 	}
 
 	@Override
-	public Soundcard findSOundcardById(Long id) {
-		String sql = "SELECT * FROM ACCESSORIES WHERE ID = ?";
-		return (Soundcard) jdbcTemplate.query(sql, soundcardMapper, id);
+	public Soundcard findSOundcardById(int id) {
+		String sql = "select id, name, price, image_url from accessories WHERE ID = ?";
+		return (Soundcard) jdbcTemplate.queryForObject(sql, soundcardMapper, id);
 	}
 
 }

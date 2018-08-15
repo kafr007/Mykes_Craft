@@ -13,31 +13,30 @@
 </header>
 
 <nav>
-	<a href="hilt.html" th:text="#{index.lightsabers}">Lightsabers</a>
-	<a href="videos.html" th:text="#{index.videos}">Videos</a> <a
-		href="contact.html" th:text="#{index.contact}">Contact</a>
+	<a href="hilt" th:text="#{index.lightsabers}">Lightsabers</a> <a
+		href="videos" th:text="#{index.videos}">Videos</a> <a href="contact"
+		th:text="#{index.contact}">Contact</a>
 </nav>
 <div style="text-align: center">
-<h1 th:text="#{led.info}" text-align="center">Válassz egy ledet</h1>
+	<h1 th:text="#{led.info}" text-align="center">Válassz egy ledet</h1>
 </div>
+<section class="teaser" th:each="led : ${leds}">
+	<div>
+		<h1 th:text="${led.name}">Ez a neve a terméknek</h1>
+		<img th:src="${led.imageUrl}" height="150" width="200">
+		<p th:text="${led.price}">Ez az ára a terméknek</p>
+		<p th:text="${led.id}">Ez az ára a terméknek</p>
+		
+		<a th:text="#{add.to.cart}"th:href="@{|/choosealed?id=${led.id}|}">Buy Now</a>
+		</div>
 
-<form name="urlap4" method="post" action="">
-<select name="lista">
-<option  selected> Első elem
-<option> 2. elem
-<option> 3. elem
-<option> 4. elem</select>
-   
-  <br>
-  <input type="submit" name="submit" value="Next" >				
-</form>
-
+</section>
 <footer>
 	<p th:text="#{footer.emailaddress}">mykescraft@gmail.com</p>
 	<div class="phone">
 		<i class="fa fa-phone" aria-hiddem="true"></i> <a
 			href="tel:+363012365645" th:text="#{footer.phone}">+3630-555-1212</a>
-</div>
+	</div>
 </footer>
 
-</html>			
+</html>

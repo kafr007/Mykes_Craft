@@ -1,5 +1,6 @@
 package com.mykescraft.serviceimpl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Set;
 
@@ -22,16 +23,24 @@ public class ShoppingCartImpl implements ShoppingCart {
 	@Autowired
 	private AccessoryRepositoryImpl accessoryRepo;
 	
-	private Set<Accessory> shoppingCartItems;
-
+	private ArrayList<Accessory> list;
+	
+	private double amount;
+	
+	public ShoppingCartImpl() {
+		list = new ArrayList<Accessory>();
+		amount = 0;
+	}
+	
 	@Override
 	public void addProductToCart(Accessory accessory) {
-		shoppingCartItems.add(accessory);
+		list.add(accessory);
+		amount+=accessory.getPrice();
 	}
 
 	@Override
 	public void removeProductFromCart(Accessory accessory) {
-		shoppingCartItems.remove(accessory);
+		list.remove(accessory);
 	}
 
 	@Override
@@ -39,8 +48,22 @@ public class ShoppingCartImpl implements ShoppingCart {
 		orderRepo.saveOrder(order);	
 	}
 
-	public Accessory findHiltById(Long id) {
-		return accessoryRepo.findHiltById(id);
+	
+
+	public ArrayList<Accessory> getList() {
+		return list;
+	}
+
+	public void setList(ArrayList<Accessory> list) {
+		this.list = list;
+	}
+
+	public double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(double amount) {
+		this.amount = amount;
 	}
 	
 	

@@ -1,30 +1,31 @@
 package com.mykescraft.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.mykescraft.model.*;
 
 public interface AccessoryRepository {
 	
-	Blade findBladeById(Long id);
+	Blade findBladeById(int id);
 	
-	Button findButtonById(Long id);
+	Button findButtonById(int id);
 	
-	Hilt findHiltById(Long id);
+	Hilt findHiltById(int id);
 	
-	Led findLedById(Long id);
+	Led findLedById(int id);
 	
-	Soundcard findSOundcardById(Long id);
+	Soundcard findSOundcardById(int id);
 	
-	List<Blade> findAllBlades();
+	ArrayList<Blade> findAllBlades();
 	
-	List<Button> findAllButtons();
+	ArrayList<Button> findAllButtons();
 	
-	List<Hilt> findAllHilts();
+	ArrayList<Hilt> findAllHilts();
 	
-	List<Led> findAllLeds();
+	ArrayList<Led> findAllLeds();
 	
-	List<Soundcard> findAllSoundcards();
+	ArrayList<Soundcard> findAllSoundcards();
 	
 	
 	

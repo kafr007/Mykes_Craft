@@ -1,5 +1,6 @@
 package com.mykescraft.serviceimpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +19,21 @@ public class AccessoryServiceImpl implements AccessoryService {
 	private AccessoryRepositoryImpl accessoryRepo;
 
 	@Override
-	public List<Hilt> findAllHilts() {
+	public ArrayList<Hilt> findAllHilts() {
 		return accessoryRepo.findAllHilts();
 	}
 
 	@Override
-	public List<Led> findAllLeds() {
+	public ArrayList<Led> findAllLeds() {
 		return accessoryRepo.findAllLeds();
+	}
+	
+	public Hilt findHiltById(int id) {
+		return accessoryRepo.findHiltById(id);
+	}
+	
+	public Led findLedById(int id) {
+		return accessoryRepo.findLedById(id);
 	}
 
 }
