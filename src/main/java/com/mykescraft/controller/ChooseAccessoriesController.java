@@ -96,14 +96,11 @@ public class ChooseAccessoriesController {
 
 		@PostMapping(value = {"/customerdata"})
 		public String customerData(@ModelAttribute Customer customer) {
-			Order order = new Order();
-			customer.setOrder(order);
-			//orderService.saveOrder(order);
-			log.debug(customer.getName());
-			log.debug(customer.getCustomerAddress());
-			log.debug(customer.getEmail());
-			log.debug(customer.getPhoneNumber());
-			log.debug(customer.getOrder().toString());
+			log.info(customer.getName());
+			log.info(customer.getCustomerAddress());
+			log.info(customer.getEmail());
+			log.info(customer.getPhoneNumber());
+			log.info(customer.getOrder().toString());
 			return "redirect:thankyou";
 		}
 	 
