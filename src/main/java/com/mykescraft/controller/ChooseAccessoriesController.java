@@ -96,6 +96,8 @@ public class ChooseAccessoriesController {
 
 		@PostMapping(value = {"/customerdata"})
 		public String customerData(@ModelAttribute Customer customer) {
+			Order order = new Order();
+			customer.setOrder(order);
 			log.info(customer.getName());
 			log.info(customer.getCustomerAddress());
 			log.info(customer.getEmail());
