@@ -13,20 +13,24 @@
 </header>
 
 <nav>
-	<a href="hilt" th:text="#{index.lightsabers}">Lightsabers</a>
-	<a href="videos" th:text="#{index.videos}">Videos</a> <a
-		href="contact" th:text="#{index.contact}">Contact</a>
+	<a href="hilt" th:text="#{index.lightsabers}">Lightsabers</a> <a
+		href="videos" th:text="#{index.videos}">Videos</a> <a href="contact"
+		th:text="#{index.contact}">Contact</a>
 </nav>
 
 
-	<div class="teaser" style="text-align: center">
-		<h1>
-			Köszönjük a rendelésed, hamarosan felvesszük veled e-mailen a kapcsolatot!<br>
-			Addig is, iratkozz fel youtube csatornánkra.
-			<a href="https://www.youtube.com/channel/UC5l7P6gS3d-stnpwtJmoJhg" th:text="#{app.title}">Lightsabers</a>
-		</h1>
-		
-	</div>
+<div class="teaser" style="text-align: center">
+	<h1 th:text="#{thank.you}">
+		Köszönjük a rendelésed, hamarosan felvesszük veled e-mailen a
+		kapcsolatot!<br> Addig is, iratkozz fel youtube csatornánkra.
+
+	</h1>
+	<h1>
+		<a href="https://www.youtube.com/channel/UC5l7P6gS3d-stnpwtJmoJhg"
+			th:text="#{app.title}">Lightsabers</a>
+	</h1>
+	<h1 th:text="#{may.the.force}">És az erő legyen veletek!</h1>
+</div>
 
 
 <footer>
