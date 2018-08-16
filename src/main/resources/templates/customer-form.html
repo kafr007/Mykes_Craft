@@ -17,7 +17,7 @@
 	<a href="videos" th:text="#{index.videos}">Videos</a> <a
 		href="contact" th:text="#{index.contact}">Contact</a>
 </nav>
-<form name="customerdata" th:action="@{/customerdata}" th:object="${customer}" method="post" class="form-signin">
+<form name="customerdata" th:action="@{/customerdata}" th:object="${customer}" method="post">
 			<h2 class="form-signin-heading">Kérlek add meg az adataid</h2>
 				<input type="text" id="name" name="name" th:field="*{name}" class="form-control" placeholder="Teljes név"  /> 
 		 	    <input type="text" id="email" name="email" th:field="*{email}" class="form-control" placeholder="E-mail cím"  /> 
