@@ -15,17 +15,10 @@ import com.mykescraft.repository.OrderRepository;
 
 @Repository
 public class OrderRepositoryImpl implements OrderRepository {
-	
-	@Autowired
-	private CustomerRepositoryImpl customerRepo;
-	
-	@Autowired
-	private AccessoryRepositoryImpl accessoryRepo;
-	
+
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	
 	@Override
 	public List<Order> findAllOrder() {
 		// TODO Auto-generated method stub
@@ -40,18 +33,17 @@ public class OrderRepositoryImpl implements OrderRepository {
 
 	@Override
 	public void saveOrder(Order order) {
-			
-		String sql = "insert into orders (id, amount, order_date, customer_id) values (?, ?, ?, ?)";
-		String sql1 = "insert into ORDERS_ACCESSORIES (order_id, accessory_id) values ( ? ,?)";
-		
-		jdbcTemplate.update(sql, order.getId(), order.getAmount(), order.getOrderDate(), order.getCustomer().getId());
-		
-		for (int i = 0; i < order.getAccessories().size(); i++) {
-			jdbcTemplate.update(sql1, order.getId(), order.getAccessories().get(i).getId());
-		
-		
-		
-	}
 
-	
-	}}
+		String sqlForOrderTable = "insert into orders (id, amount, order_date, customer_id) values (?, ?, ?, ?)";
+		String sqlForOrderDetail = "insert into ORDERS_ACCESSORIES (order_id, accessory_id) values ( ? ,?)";
+
+		jdbcTemplate.update(sqlForOrderTable, order.getId(), order.getAmount(), order.getOrderDate(),
+				order.getCustomer().getId());
+
+		for (int i = 0; i < order.getAccessories().size(); i++) {
+			jdbcTemplate.update(sqlForOrderDetail, order.getId(), order.getAccessories().get(i).getId());
+
+		}
+
+	}
+}
