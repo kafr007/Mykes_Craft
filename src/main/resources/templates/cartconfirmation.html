@@ -14,29 +14,40 @@
 </header>
 
 <nav>
-	<a href="hilt" th:text="#{index.lightsabers}">Lightsabers</a> 
-	<a href="videos" th:text="#{index.videos}">Videos</a> <a href="contact"
+	<a href="hilt" th:text="#{index.lightsabers}">Lightsabers</a> <a
+		href="videos" th:text="#{index.videos}">Videos</a> <a href="contact"
 		th:text="#{index.contact}">Contact</a>
 </nav>
 <div class="teaser" style="text-align: center">
-	<h1 th:text="#{cart.confirmation.info}">Válassz egy markolatot</h1>
+	<h1 th:text="#{cart.confirmation.info}">A kosár</h1>
 </div>
-<div class="teaser" style="text-align: center">
-	<table border="1" style="width: 300px">
-		<th:block th:each="accessory : ${accessories}">
-			<tr>
-				<td th:text="${accessory.name}">A Smoke Test'</td>
-				<td th:text="${accessory.price}">A Smoke Test'</td>
-			</tr>
-		</th:block>
 
-	</table>
-	<p th:text="${amount}">
-	<a href="/customer" th:text="#{cart.confirmation}">Confirm</a>
-</div>
+<table border="0" cellspacing="0" cellpadding="0" width="100%"
+	height="100%">
+	<tr>
+		<td width="100%" height="100%" valign="middle" align="center">
+			<table border="1" style="width: 300px">
+				<thead>
+					<tr>
+						<th>Név</th>
+						<th>Ár (€)</th>
+					</tr>
+				</thead>
+				<th:block th:each="accessory : ${accessories}">
+					<tr>
+						<td th:text="${accessory.name}">Név</td>
+						<td th:text="${accessory.price}">Ár</td>
+					</tr>
+				</th:block>
+			</table>
+		</td>
+	</tr>
+</table>
 <div class="teaser" style="text-align: center">
- <a href="customer-form" th:text="#{cart.confirmation}">Confirm</a>
- </div>
+	<h1>Végösszeg (€):</h1> <h1 th:text="${amount}"></h1>
+	<a href="customer-form" th:text="#{cart.confirmation}">Confirm</a>
+	<a href="hilt" th:text="#{cart.empty}">Üres</a>
+</div>
 <footer>
 	<p th:text="#{footer.emailaddress}">mykescraft@gmail.com</p>
 	<div class="phone">
