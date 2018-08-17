@@ -36,4 +36,12 @@ public class AccessoryServiceImpl implements AccessoryService {
 		return accessoryRepo.findLedById(id);
 	}
 
+	public AccessoryRepositoryImpl getAccessoryRepo() {
+		return accessoryRepo;
+	}
+
+	public void setAccessoryRepo(AccessoryRepositoryImpl accessoryRepo) {
+		this.accessoryRepo = accessoryRepo;
+	}
+	
 }
