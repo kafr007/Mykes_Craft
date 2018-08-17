@@ -25,8 +25,7 @@
 		<h1 th:text="${led.name}">Ez a neve a terméknek</h1>
 		<img th:src="${led.imageUrl}" height="150" width="200">
 		<p th:text="${led.price}">Ez az ára a terméknek</p>
-		<p th:text="${led.id}">Ez az ára a terméknek</p>
-		
+
 		<a th:text="#{add.to.cart}"th:href="@{|/choosealed?id=${led.id}|}">Buy Now</a>
 		</div>
 
