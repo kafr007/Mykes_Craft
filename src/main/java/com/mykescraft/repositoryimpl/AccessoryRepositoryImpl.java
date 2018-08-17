@@ -22,7 +22,7 @@ import com.mykescraft.repository.AccessoryRepository;
 @Repository
 public class AccessoryRepositoryImpl implements AccessoryRepository {
 	
-	@Autowired
+	@Autowired(required=true)
 	private JdbcTemplate jdbcTemplate;
 	
 	private final RowMapper<Hilt> hiltMapper = new RowMapper<Hilt>() {
@@ -161,6 +161,12 @@ public class AccessoryRepositoryImpl implements AccessoryRepository {
 	public Soundcard findSOundcardById(long id) {
 		String sql = "select id, name, price, image_url from accessories WHERE ID = ?";
 		return (Soundcard) jdbcTemplate.queryForObject(sql, soundcardMapper, id);
+	}
+	
+	
+	public void saveHilt(String name, double price, String imageUrl, String accessory_type) {
+		String sql = "insert into accessories(name, price, image_url, accessory_type) values ('"+ name + "','" + price + "','" + imageUrl + "','" + accessory_type + "')";
+		jdbcTemplate.update(sql);
 	}
 
 
