@@ -14,7 +14,7 @@ public interface ShoppingCart {
 	
 	void removeProductFromCart(Accessory accessory);
 	
-	void save(Order order, Customer customer);
+	void save(Customer customer);
 	
 	boolean isAccessoryTypeAlreadyInTheCart(Accessory accessory);
 	

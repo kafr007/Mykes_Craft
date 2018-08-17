@@ -18,9 +18,9 @@ import javax.validation.constraints.Size;
 @Table(name = "customers")
 public class Customer {
 
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
 	@Id
-	private int id;
+	private String id;
 
 	public Order getOrder() {
 		return order;
@@ -48,18 +48,18 @@ public class Customer {
     @NotBlank
 	private String phoneNumber;
 	
-	@OneToOne
+	@OneToOne(mappedBy="customer")
     private Order order;
 
 	public Customer() {
 
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

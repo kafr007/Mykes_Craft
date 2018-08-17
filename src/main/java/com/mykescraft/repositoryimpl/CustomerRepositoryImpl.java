@@ -28,29 +28,11 @@ public class CustomerRepositoryImpl implements CustomerRepository {
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
-	public long saveCustomerData(Customer customer) {
-		String sql ="insert into customers (name, email, customer_address, phone_Number) values (?, ?, ?, ?)";
-		final PreparedStatementCreator psc = new PreparedStatementCreator() {
-		      @Override
-		      public PreparedStatement createPreparedStatement(final Connection connection) throws SQLException {
-		        final PreparedStatement ps = connection.prepareStatement(sql,
-		            Statement.RETURN_GENERATED_KEYS);
-		        ps.setString(1, customer.getName());
-		        ps.setString(2, customer.getEmail());
-		        ps.setString(3, customer.getCustomerAddress());
-		        ps.setString(4, customer.getPhoneNumber());
-		        return ps;
-		      }
-		    };
-
-		    // The newly generated key will be saved in this object
-		    final KeyHolder holder = new GeneratedKeyHolder();
-
-		    jdbcTemplate.update(psc, holder);
-
-		    final long id = holder.getKey().longValue();
-		    log.info("id " + id);
-		return id;
+	public void saveCustomerData(Customer customer) {
+		String sql ="insert into customers (id, name, email, customer_address, phone_Number) values (?, ?, ?, ?,?)";
+		
+		jdbcTemplate.update(sql, customer.getId(), customer.getName(), customer.getEmail(), customer.getCustomerAddress(), customer.getPhoneNumber());
+		
 	}
 
 }

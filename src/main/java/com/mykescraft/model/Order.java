@@ -1,6 +1,8 @@
 package com.mykescraft.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -22,18 +24,16 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name="orders")
 public class Order {
-	
-
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+		
 	@Id
-	private int id;
+	private String id;
 	
 	@OneToOne
 	private Customer customer;
 
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE} , fetch = FetchType.LAZY)
     @JoinTable(name = "ORDERS_ACCESSORIES", joinColumns = {@JoinColumn(name = "ORDER_ID")},inverseJoinColumns = {@JoinColumn(name = "ACCESSORY_ID")})
-    private Set<Accessory> accessories;
+    private List<Accessory> accessories;
 		
 	@Column
 	private Date orderDate;
@@ -41,21 +41,16 @@ public class Order {
 	@Column
 	private double amount;
 	
-    public Order(Date orderDate, Set<Accessory> boughtAccessories) {
-    	this.orderDate=orderDate;
-    	this.accessories = boughtAccessories;
-    }
-
 	
 	public Order() {
 		
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -68,11 +63,11 @@ public class Order {
 		this.orderDate = orderDate;
 	}
 
-	public Set<Accessory> getAccessories() {
+	public List<Accessory> getAccessories() {
 		return accessories;
 	}
 
-	public void setAccessories(Set<Accessory> accessories) {
+	public void setAccessories(List<Accessory> accessories) {
 		this.accessories = accessories;
 	}
 
@@ -83,4 +78,16 @@ public class Order {
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
+
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+	
+	
 }

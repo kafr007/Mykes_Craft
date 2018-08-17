@@ -1,7 +1,10 @@
 package com.mykescraft.serviceimpl;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.UUID;
 
+import org.hibernate.type.UUIDCharType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,9 +69,17 @@ public class ShoppingCartImpl implements ShoppingCart {
 	}
 	
 	@Override
-	public void save(Order order, Customer customer) {
+	public void save(Customer customer) {
 		log.info(customer.toString());
+		Order order = new Order();
+		order.setId(UUID.randomUUID().toString());
+		log.info("id" + order.getId());
+		customer.setId(UUID.randomUUID().toString());
 		customerRepo.saveCustomerData(customer);
+		order.setAmount(amount);
+		order.setOrderDate(new Date());
+		order.setCustomer(customer);
+		order.setAccessories(list);
 		orderRepo.saveOrder(order);
 	}
 	

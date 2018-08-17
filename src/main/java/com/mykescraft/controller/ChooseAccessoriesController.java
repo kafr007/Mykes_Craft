@@ -1,9 +1,12 @@
 package com.mykescraft.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.Set;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -23,6 +26,8 @@ import com.mykescraft.model.Customer;
 import com.mykescraft.model.Hilt;
 import com.mykescraft.model.Led;
 import com.mykescraft.model.Order;
+import com.mykescraft.repositoryimpl.CustomerRepositoryImpl;
+import com.mykescraft.repositoryimpl.OrderRepositoryImpl;
 import com.mykescraft.service.exception.AccessoryTypeAlreadyInTheCartException;
 import com.mykescraft.serviceimpl.AccessoryServiceImpl;
 import com.mykescraft.serviceimpl.ShoppingCartImpl;
@@ -34,6 +39,14 @@ public class ChooseAccessoriesController {
 
 	@Autowired
 	private ShoppingCartImpl shoppingCartService;
+	
+	@Autowired
+	private CustomerRepositoryImpl customerRepo;
+	
+	@Autowired
+	private OrderRepositoryImpl orderRepo;
+
+
 
 	@Autowired
 	private AccessoryServiceImpl accessoryService;
@@ -89,6 +102,7 @@ public class ChooseAccessoriesController {
 				shoppingCartService.addProductToCart(led);
 				log.info("led list.size"+ shoppingCartService.getList().size());
 				log.info("led price"+ shoppingCartService.getAmount());
+				
 			}
 			return "redirect:/cartconfirmation";
 	 }	
@@ -110,15 +124,14 @@ public class ChooseAccessoriesController {
 
 		@PostMapping(value = {"/customerdata"})
 		public String customerData(@ModelAttribute Customer customer) {
+			/*customer.setId(UUID.randomUUID().toString());
 			Order order = new Order();
+			order.setId(UUID.randomUUID().toString());
 			customer.setOrder(order);
-			log.info(customer.getName());
-			log.info(customer.getCustomerAddress());
-			log.info(customer.getEmail());
-			log.info(customer.getPhoneNumber());
-			log.info(customer.getOrder().toString());
-			shoppingCartService.save(order, customer);
+			customerRepo.saveCustomerData(customer);*/
+			shoppingCartService.save(customer);
 			return "redirect:thankyou";
+				
 		}
 	 
 		 @GetMapping(value = {"/thankyou"})
