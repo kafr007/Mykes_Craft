@@ -124,11 +124,6 @@ public class ChooseAccessoriesController {
 
 		@PostMapping(value = {"/customerdata"})
 		public String customerData(@ModelAttribute Customer customer) {
-			/*customer.setId(UUID.randomUUID().toString());
-			Order order = new Order();
-			order.setId(UUID.randomUUID().toString());
-			customer.setOrder(order);
-			customerRepo.saveCustomerData(customer);*/
 			shoppingCartService.save(customer);
 			return "redirect:thankyou";
 				
