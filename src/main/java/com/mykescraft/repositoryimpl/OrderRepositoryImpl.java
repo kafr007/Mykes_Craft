@@ -34,15 +34,9 @@ public class OrderRepositoryImpl implements OrderRepository {
 
 	@Override
 	public void saveOrder(Order order) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
-	/*@Override
-	public void saveOrder(Order order) {
-		final String sql = "INSERT INTO orders (accessories, orderdate, customerName, customerAddress, customerEmail, customerPhone) VALUES (?, ?, ?, ?, ?, ?)";
-		
-		jdbcTemplate.update(sql, order.getAccessories(), order.getOrderDate(), order.getCustomerName(), order.getCustomerAddress(), order.getCustomerEmail(), order.getCustomerPhone());
-	}
-*/
+	
 }

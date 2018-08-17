@@ -7,15 +7,15 @@ import com.mykescraft.model.*;
 
 public interface AccessoryRepository {
 	
-	Blade findBladeById(int id);
+	Blade findBladeById(long id);
 	
-	Button findButtonById(int id);
+	Button findButtonById(long id);
 	
-	Hilt findHiltById(int id);
+	Hilt findHiltById(long id);
 	
-	Led findLedById(int id);
+	Led findLedById(long id);
 	
-	Soundcard findSOundcardById(int id);
+	Soundcard findSOundcardById(long id);
 	
 	ArrayList<Blade> findAllBlades();
 	

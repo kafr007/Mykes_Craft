@@ -30,7 +30,7 @@ public class AccessoryRepositoryImpl implements AccessoryRepository {
 		@Override
 		public Hilt mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Hilt hilt = new Hilt();
-			hilt.setId(rs.getInt("id"));
+			hilt.setId(rs.getLong("id"));
 			hilt.setName(rs.getString("name"));
 			hilt.setPrice(rs.getDouble("price"));
 			hilt.setImageUrl(rs.getString("image_url"));
@@ -44,7 +44,7 @@ public class AccessoryRepositoryImpl implements AccessoryRepository {
 		@Override
 		public Button mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Button button = new Button();
-			button.setId(rs.getInt("id"));
+			button.setId(rs.getLong("id"));
 			button.setName(rs.getString("name"));
 			button.setPrice(rs.getDouble("price"));
 			button.setImageUrl(rs.getString("image_url"));
@@ -58,7 +58,7 @@ public class AccessoryRepositoryImpl implements AccessoryRepository {
 		@Override
 		public Blade mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Blade blade = new Blade();
-			blade.setId(rs.getInt("id"));
+			blade.setId(rs.getLong("id"));
 			blade.setName(rs.getString("name"));
 			blade.setPrice(rs.getDouble("price"));
 			blade.setImageUrl(rs.getString("image_url"));
@@ -75,7 +75,7 @@ public class AccessoryRepositoryImpl implements AccessoryRepository {
 		@Override
 		public Led mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Led led = new Led();
-			led.setId(rs.getInt("id"));
+			led.setId(rs.getLong("id"));
 			led.setName(rs.getString("name"));
 			led.setPrice(rs.getDouble("price"));
 			led.setImageUrl(rs.getString("image_url"));
@@ -90,7 +90,7 @@ public class AccessoryRepositoryImpl implements AccessoryRepository {
 		@Override
 		public Soundcard mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Soundcard soundcard = new Soundcard();
-			soundcard.setId(rs.getInt("id"));
+			soundcard.setId(rs.getLong("id"));
 			soundcard.setName(rs.getString("name"));
 			soundcard.setPrice(rs.getDouble("price"));
 			soundcard.setImageUrl(rs.getString("image_url"));
@@ -135,32 +135,33 @@ public class AccessoryRepositoryImpl implements AccessoryRepository {
 	}
 
 	@Override
-	public Blade findBladeById(int id) {
+	public Blade findBladeById(long id) {
 		String sql = "select id, name, price, image_url, tip, length, wallthickness from accessories WHERE ID = ?";
 		return (Blade) jdbcTemplate.queryForObject(sql, bladeMapper, id);
 	}
 
 	@Override
-	public Button findButtonById(int id) {
+	public Button findButtonById(long id) {
 		String sql = "select id, name, price, image_url from accessories WHERE ID = ?";
 		return (Button) jdbcTemplate.queryForObject(sql, buttonMapper, id);
 	}
 	
-	public Hilt findHiltById(int id) {
+	public Hilt findHiltById(long id) {
 		String sql = "select id, name, price, image_url from accessories WHERE ID = ?";
 		return (Hilt) jdbcTemplate.queryForObject(sql, hiltMapper, id);
 	}
 
 	@Override
-	public Led findLedById(int id) {
+	public Led findLedById(long id) {
 		String sql = "select id, name, price, image_url, color from accessories WHERE ID = ?";
 		return (Led) jdbcTemplate.queryForObject(sql, ledMapper, id);
 	}
 
 	@Override
-	public Soundcard findSOundcardById(int id) {
+	public Soundcard findSOundcardById(long id) {
 		String sql = "select id, name, price, image_url from accessories WHERE ID = ?";
 		return (Soundcard) jdbcTemplate.queryForObject(sql, soundcardMapper, id);
 	}
+
 
 }

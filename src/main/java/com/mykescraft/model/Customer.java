@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -17,7 +18,7 @@ import javax.validation.constraints.Size;
 @Table(name = "customers")
 public class Customer {
 
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	private int id;
 
@@ -94,6 +95,10 @@ public class Customer {
 		this.phoneNumber = phoneNumber;
 	}
 
-	
+	@Override
+	public String toString() {
+		return "Customer [id=" + id + ", name=" + name + ", email=" + email + ", customerAddress=" + customerAddress
+				+ ", phoneNumber=" + phoneNumber + ", order=" + order + "]";
+	}
 
 }

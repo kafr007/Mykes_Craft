@@ -25,7 +25,6 @@ import com.mykescraft.model.Led;
 import com.mykescraft.model.Order;
 import com.mykescraft.service.exception.AccessoryTypeAlreadyInTheCartException;
 import com.mykescraft.serviceimpl.AccessoryServiceImpl;
-import com.mykescraft.serviceimpl.OrderServiceImpl;
 import com.mykescraft.serviceimpl.ShoppingCartImpl;
 
 @Controller
@@ -39,8 +38,6 @@ public class ChooseAccessoriesController {
 	@Autowired
 	private AccessoryServiceImpl accessoryService;
 	
-	@Autowired
-	private OrderServiceImpl orderService;
 
 	@GetMapping("/hilt")
 	public String displayHilt(Model model) {
@@ -86,7 +83,7 @@ public class ChooseAccessoriesController {
 			log.info(led.getName());
 			log.info("" +led.getPrice());
 			if(shoppingCartService.isAccessoryTypeAlreadyInTheCart(led)) {
-				new AccessoryTypeAlreadyInTheCartException("Már van " + led.getClass() + " típus a kosárban"); 
+				new AccessoryTypeAlreadyInTheCartException("Már van " + led.getClass() + " típus a kosárban"); //FIXME add information message to the customer
 				}
 			else {
 				shoppingCartService.addProductToCart(led);
@@ -120,6 +117,7 @@ public class ChooseAccessoriesController {
 			log.info(customer.getEmail());
 			log.info(customer.getPhoneNumber());
 			log.info(customer.getOrder().toString());
+			shoppingCartService.save(order, customer);
 			return "redirect:thankyou";
 		}
 	 
