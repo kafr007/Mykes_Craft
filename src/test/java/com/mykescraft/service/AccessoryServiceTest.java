@@ -15,6 +15,10 @@ import com.mykescraft.repositoryimpl.AccessoryRepositoryImpl;
 import com.mykescraft.serviceimpl.AccessoryServiceImpl;
 
 import static org.mockito.Mockito.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -33,6 +37,12 @@ public class AccessoryServiceTest {
 	
 	@Mock
 	private Led led;
+	
+	@Mock
+	private ArrayList<Led> ledList;
+	
+	@Mock
+	private ArrayList<Hilt> hiltList;
 	
 	@Before
 	public void setupMock() {
@@ -54,14 +64,31 @@ public class AccessoryServiceTest {
 	@Test
 	public void shouldReturnLed_whenFindLedByIdIsCalled() throws Exception {
 	    // Arrange
-	    when(accessoryRepo.findLedById(2)).thenReturn(led);
+	    when(accessoryRepo.findLedById(5)).thenReturn(led);
 	    // Act
-	    Accessory retrievedAccessory = accessoryService.findLedById(2);
+	    Accessory retrievedAccessory = accessoryService.findLedById(5);
 	    // Assert
 	    assertThat(retrievedAccessory, is(equalTo(led)));
 	}
 	
+	@Test
+	public void shouldReturnLedList_whenFindAllLedIsCalled() throws Exception {
+	    // Arrange
+	    when(accessoryRepo.findAllLeds()).thenReturn(ledList);
+	    // Act
+	    ArrayList<Led> retrievedLedList = accessoryService.findAllLeds();
+	    // Assert
+	    assertThat(retrievedLedList, is(equalTo(ledList)));
+	}
 	
-	
+	@Test
+	public void shouldReturnHiltList_whenFindAllHiltIsCalled() throws Exception {
+	    // Arrange
+	    when(accessoryRepo.findAllHilts()).thenReturn(hiltList);
+	    // Act
+	    ArrayList<Hilt> retrievedHiltList = accessoryService.findAllHilts();
+	    // Assert
+	    assertThat(retrievedHiltList, is(equalTo(hiltList)));
+	}	
 	
 }	
