@@ -1,10 +1,16 @@
 package com.mykescraft.service;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,15 +19,6 @@ import com.mykescraft.model.Hilt;
 import com.mykescraft.model.Led;
 import com.mykescraft.repositoryimpl.AccessoryRepositoryImpl;
 import com.mykescraft.serviceimpl.AccessoryServiceImpl;
-
-import static org.mockito.Mockito.*;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 
 public class AccessoryServiceTest {
@@ -45,7 +42,7 @@ public class AccessoryServiceTest {
 	private ArrayList<Hilt> hiltList;
 	
 	@Before
-	public void setupMock() {
+	public void init() {
 		MockitoAnnotations.initMocks(this);
 		accessoryService=new AccessoryServiceImpl();
 		accessoryService.setAccessoryRepo(accessoryRepo);
@@ -59,6 +56,7 @@ public class AccessoryServiceTest {
 	    Accessory retrievedAccessory = accessoryService.findHiltById(5);
 	    // Assert
 	    assertThat(retrievedAccessory, is(equalTo(hilt)));
+	    verify(accessoryRepo).findHiltById(5);
 	}
 	
 	@Test
@@ -69,6 +67,7 @@ public class AccessoryServiceTest {
 	    Accessory retrievedAccessory = accessoryService.findLedById(5);
 	    // Assert
 	    assertThat(retrievedAccessory, is(equalTo(led)));
+	    verify(accessoryRepo).findLedById(5);
 	}
 	
 	@Test
