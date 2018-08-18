@@ -20,7 +20,7 @@ import com.mykescraft.service.ShoppingCart;
 import com.mykescraft.service.exception.AccessoryTypeAlreadyInTheCartException;
 
 @Service
-public class ShoppingCartImpl implements ShoppingCart {
+public class ShoppingCartServiceImpl implements ShoppingCart {
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -37,7 +37,7 @@ public class ShoppingCartImpl implements ShoppingCart {
 
 	private double amount;
 
-	public ShoppingCartImpl() {
+	public ShoppingCartServiceImpl() {
 		list = new ArrayList<Accessory>();
 		amount = 0;
 	}
@@ -98,4 +98,28 @@ public class ShoppingCartImpl implements ShoppingCart {
 		this.amount = amount;
 	}
 
+	public OrderRepositoryImpl getOrderRepo() {
+		return orderRepo;
+	}
+
+	public void setOrderRepo(OrderRepositoryImpl orderRepo) {
+		this.orderRepo = orderRepo;
+	}
+
+	public AccessoryRepositoryImpl getAccessoryRepo() {
+		return accessoryRepo;
+	}
+
+	public void setAccessoryRepo(AccessoryRepositoryImpl accessoryRepo) {
+		this.accessoryRepo = accessoryRepo;
+	}
+
+	public CustomerRepositoryImpl getCustomerRepo() {
+		return customerRepo;
+	}
+
+	public void setCustomerRepo(CustomerRepositoryImpl customerRepo) {
+		this.customerRepo = customerRepo;
+	}
+	
 }

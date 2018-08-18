@@ -1,4 +1,4 @@
-package com.mykescraft.repository;
+package com.mykescraft.service;
 
 import org.junit.Before;
 import org.junit.Test;

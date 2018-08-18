@@ -1,52 +1,79 @@
 package com.mykescraft.repository;
 
+import static org.junit.Assert.*;
+import static org.mockito.Matchers.*;
+import static org.mockito.Mockito.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.List;
 
-import static org.springframework.data.jpa.domain.Specifications.where;
-
+import javax.sql.DataSource;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
+import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.mykescraft.model.Accessory;
+import com.mykescraft.MykesCraftApplication;
 import com.mykescraft.model.Hilt;
 import com.mykescraft.model.Led;
 import com.mykescraft.repositoryimpl.AccessoryRepositoryImpl;
-import com.mykescraft.serviceimpl.AccessoryServiceImpl;
-
-import static org.mockito.Mockito.*;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@DataJpaTest
+@SpringBootTest
 public class AccessoryRepositoryTest {
-	
-	@Autowired(required=true)
+
+	@Autowired
 	private AccessoryRepositoryImpl accessoryRepo;
-		
-	@Before
-	public void setup() {
-		accessoryRepo.saveHilt("Valami", 25.36, "http.hkhhkjhkj", "hilt");
+
+	@Test
+	public void findAllHilt() {
+		List<Hilt> hilts = accessoryRepo.findAllHilts();
+		assertNotNull(hilts);
+		assertTrue(!hilts.isEmpty());
 	}
 	
 	@Test
-	public void shouldReturnHilt_whenFindHiltByIdIsCalled() throws Exception {
-		assertThat(accessoryRepo.findAllHilts().size()==1);
+	public void findHiltById1() {
+		Hilt hilt = accessoryRepo.findHiltById(1);
+		assertNotNull(hilt);
+	}
 	
+	@Test
+	public void findHiltById2() {
+		Hilt hilt = new Hilt();
+		hilt = accessoryRepo.findHiltById(1);
+		assertEquals(hilt.getName(), "Boros");
+		assert(hilt.getPrice()==25);
+		assertEquals(hilt.getImageUrl(), "https://i.imgur.com/AFoVY6Y.jpg");
+		
+	}
+	
+	@Test
+	public void findAllLed() {
+		List<Led> leds = accessoryRepo.findAllLeds();
+		assertNotNull(leds);
+		assertTrue(!leds.isEmpty());
+	}
+	
+	@Test
+	public void findHLedById1() {
+		Led led = accessoryRepo.findLedById(4);
+		assertNotNull(led);
+	}
+	
+	@Test
+	public void findHLedById2() {
+		Led led = accessoryRepo.findLedById(4);
+		assertEquals(led.getName(), "Red");
+		assert(led.getPrice()==10);
+		assertEquals(led.getImageUrl(), "https://i.imgur.com/KV8V36e.jpg");
+	}
 
-}
-	
 }

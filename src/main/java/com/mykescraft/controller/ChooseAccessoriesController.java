@@ -30,7 +30,7 @@ import com.mykescraft.repositoryimpl.CustomerRepositoryImpl;
 import com.mykescraft.repositoryimpl.OrderRepositoryImpl;
 import com.mykescraft.service.exception.AccessoryTypeAlreadyInTheCartException;
 import com.mykescraft.serviceimpl.AccessoryServiceImpl;
-import com.mykescraft.serviceimpl.ShoppingCartImpl;
+import com.mykescraft.serviceimpl.ShoppingCartServiceImpl;
 
 @Controller
 public class ChooseAccessoriesController {
@@ -38,7 +38,7 @@ public class ChooseAccessoriesController {
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
-	private ShoppingCartImpl shoppingCartService;
+	private ShoppingCartServiceImpl shoppingCartService;
 	
 	@Autowired
 	private CustomerRepositoryImpl customerRepo;

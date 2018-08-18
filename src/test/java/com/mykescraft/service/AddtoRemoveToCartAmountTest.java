@@ -6,12 +6,12 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.mykescraft.model.Accessory;
-import com.mykescraft.serviceimpl.ShoppingCartImpl;
+import com.mykescraft.serviceimpl.ShoppingCartServiceImpl;
 
 public class AddtoRemoveToCartAmountTest {
 	
 	@Autowired
-	private ShoppingCartImpl shoppingCartService;
+	private ShoppingCartServiceImpl shoppingCartService;
 	
 	private Accessory accessory;
 	
