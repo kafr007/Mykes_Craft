@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
-import org.hibernate.type.UUIDCharType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +15,11 @@ import com.mykescraft.model.Order;
 import com.mykescraft.repositoryimpl.AccessoryRepositoryImpl;
 import com.mykescraft.repositoryimpl.CustomerRepositoryImpl;
 import com.mykescraft.repositoryimpl.OrderRepositoryImpl;
-import com.mykescraft.service.ShoppingCart;
-import com.mykescraft.service.exception.AccessoryTypeAlreadyInTheCartException;
+import com.mykescraft.service.ShoppingCartService;
+import com.mykescraft.service.exception.AccessoryIsNotInTheCart;
 
 @Service
-public class ShoppingCartServiceImpl implements ShoppingCart {
+public class ShoppingCartServiceImpl implements ShoppingCartService {
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -42,31 +41,9 @@ public class ShoppingCartServiceImpl implements ShoppingCart {
 		amount = 0;
 	}
 
-	@Override
-	public void addProductToCart(Accessory accessory) {
-		list.add(accessory);
-		amount += accessory.getPrice();
 
-	}
 
-	@Override
-	public boolean isAccessoryTypeAlreadyInTheCart(Accessory accessory) {
-		int counter = 0;
-		for (int i = 0; i < list.size(); i++) {
-			if (list.get(i).getClass().equals(accessory.getClass()))
-				counter++;
-		}
-
-		return counter != 0;
-
-	}
-
-	@Override
-	public void removeProductFromCart(Accessory accessory) {
-		list.remove(accessory);
-		amount -= accessory.getPrice();
-	}
-
+	
 	@Override
 	public void save(Customer customer) {
 		log.info(customer.toString());
@@ -120,6 +97,44 @@ public class ShoppingCartServiceImpl implements ShoppingCart {
 
 	public void setCustomerRepo(CustomerRepositoryImpl customerRepo) {
 		this.customerRepo = customerRepo;
+	}
+
+	@Override
+	public boolean cartIsEmpty() {
+		return list.isEmpty();
+	}
+
+	@Override
+	public void removeAll() {
+		amount = 0;
+		list.clear();		
+	}
+
+	@Override
+	public void addProductToCart(Accessory accessory) {
+		list.add(accessory);
+		amount += accessory.getPrice();
+		
+	}
+
+	@Override
+	public void removeProductFromCart(Accessory accessory) throws AccessoryIsNotInTheCart {
+		if (!list.contains(accessory)) {
+			throw new AccessoryIsNotInTheCart("Nincs ilyen termék a kosárban");
+		}
+		list.remove(accessory);
+		amount -= accessory.getPrice();	
+	}
+
+	@Override
+	public boolean isAccessoryTypeAlreadyInTheCart(Accessory accessory) {
+		int counter = 0;
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i).getClass().equals(accessory.getClass()))
+				counter++;
+		}
+
+		return counter != 0;
 	}
 	
 }

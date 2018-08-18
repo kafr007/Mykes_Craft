@@ -10,9 +10,5 @@ public class Soundcard extends Accessory {
 	public Soundcard() {
 	}
 
-	public Soundcard(String name, double price) {
-		super(name, price);
-	}
-
 
 }

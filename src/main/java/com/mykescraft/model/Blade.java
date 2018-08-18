@@ -22,8 +22,8 @@ public class Blade extends Accessory {
 	public Blade() {
 	}
 
-	public Blade(String name, double length, String wallThickness, String tip, double price) {
-		super(name,price);
+	public Blade(double length, String wallThickness, String tip) {
+		super();
 		this.length = length;
 		this.wallThickness = wallThickness;
 		this.tip = tip;

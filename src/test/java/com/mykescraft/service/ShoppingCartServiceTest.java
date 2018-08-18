@@ -5,6 +5,8 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -22,23 +24,18 @@ import com.mykescraft.serviceimpl.ShoppingCartServiceImpl;
 
 public class ShoppingCartServiceTest {
 	
-	@Autowired
+	@Mock
 	private ShoppingCartServiceImpl  cartService;
-	
-	@Mock
-	private OrderRepositoryImpl orderRepo;
-	
-	@Mock
-	private Order order;
-	
-	@Mock
-	private Led led;
+		
+	private ArrayList<Accessory> list;
 	
 	@Before
-	public void setupMock() {
+	public void init() {
 		MockitoAnnotations.initMocks(this);
 		cartService=new ShoppingCartServiceImpl();
-		cartService.setOrderRepo(orderRepo);
+		cartService.setList(list);
+		list.add(new Hilt("valami", 25.6, "http"));
+		list.add(new Hilt("valami1", 36.0, "https"));
 	}
 	
 	

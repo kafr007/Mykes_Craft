@@ -31,9 +31,10 @@ public abstract class Accessory {
 	public Accessory() {
 	}
 
-	public Accessory(String name, double price) {
+	public Accessory(String name, double price, String imageUrl) {
 		this.name = name;
 		this.price = price;
+		this.imageUrl=imageUrl;
 
 	}
 

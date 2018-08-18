@@ -10,7 +10,7 @@ public class Hilt extends Accessory {
 	public Hilt() {
 	}
 
-	public Hilt(String name, double price) {
-		super(name, price);
+	public Hilt(String name, double price, String imageUrl) {
+		super(name, price,imageUrl);
 		}
 }

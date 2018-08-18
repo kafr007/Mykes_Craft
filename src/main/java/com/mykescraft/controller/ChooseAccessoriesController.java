@@ -57,8 +57,7 @@ public class ChooseAccessoriesController {
 		model.addAttribute("hilts", accessoryService.findAllHilts());
 		log.info("Hiltbe beléptem");
 		log.info("list.size" + shoppingCartService.getList().size());
-		shoppingCartService.getList().clear();
-		shoppingCartService.setAmount(0);
+		shoppingCartService.removeAll();;
 		log.info("list.size" + shoppingCartService.getList().size());
 		return "hilt";
 	}

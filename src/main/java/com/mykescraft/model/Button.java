@@ -10,10 +10,4 @@ public class Button extends Accessory {
 	 public Button() {   
 	  }
 
-	public Button(String name, double price) {
-		super(name, price);
-	}
-  
-  
-
 }

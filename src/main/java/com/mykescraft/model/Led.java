@@ -16,10 +16,12 @@ public class Led extends Accessory {
 	public Led() {
 	}
 
-	public Led(String name, String color, double price) {
-		super(name, price);
+	
+	public Led(String color) {
+		super();
 		this.color = color;
 	}
+
 
 	public String getColor() {
 		return color;
