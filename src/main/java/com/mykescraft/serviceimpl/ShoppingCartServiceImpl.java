@@ -17,6 +17,7 @@ import com.mykescraft.repositoryimpl.CustomerRepositoryImpl;
 import com.mykescraft.repositoryimpl.OrderRepositoryImpl;
 import com.mykescraft.service.ShoppingCartService;
 import com.mykescraft.service.exception.AccessoryIsNotInTheCart;
+import com.mykescraft.service.exception.AccessoryTypeAlreadyInTheCartException;
 
 @Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {
@@ -41,7 +42,45 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 		amount = 0;
 	}
 
+	@Override
+	public boolean cartIsEmpty() {
+		return list.isEmpty();
+	}
 
+	@Override
+	public void removeAll() {
+		amount = 0;
+		list.clear();		
+	}
+
+	@Override
+	public void addProductToCart(Accessory accessory) {
+		list.add(accessory);
+		amount += accessory.getPrice();
+		
+	}
+
+	@Override
+	public void removeProductFromCart(Accessory accessory) throws AccessoryIsNotInTheCart {
+		if (!list.contains(accessory)) {
+			throw new AccessoryIsNotInTheCart("Nincs ilyen termék a kosárban");
+		}
+		list.remove(accessory);
+		amount -= accessory.getPrice();	
+	}
+
+	@Override
+	public boolean isAccessoryTypeAlreadyInTheCart(Accessory accessory) throws AccessoryTypeAlreadyInTheCartException {
+		int counter = 0;
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i).getClass().equals(accessory.getClass()))
+				counter++;
+		}
+		if(counter!=0)
+			throw  new AccessoryTypeAlreadyInTheCartException("Már van " + accessory.getClass() + " ilyen termék a kosárban");
+		return counter != 0;
+	}
+	
 
 	
 	@Override
@@ -99,42 +138,4 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 		this.customerRepo = customerRepo;
 	}
 
-	@Override
-	public boolean cartIsEmpty() {
-		return list.isEmpty();
-	}
-
-	@Override
-	public void removeAll() {
-		amount = 0;
-		list.clear();		
-	}
-
-	@Override
-	public void addProductToCart(Accessory accessory) {
-		list.add(accessory);
-		amount += accessory.getPrice();
-		
-	}
-
-	@Override
-	public void removeProductFromCart(Accessory accessory) throws AccessoryIsNotInTheCart {
-		if (!list.contains(accessory)) {
-			throw new AccessoryIsNotInTheCart("Nincs ilyen termék a kosárban");
-		}
-		list.remove(accessory);
-		amount -= accessory.getPrice();	
-	}
-
-	@Override
-	public boolean isAccessoryTypeAlreadyInTheCart(Accessory accessory) {
-		int counter = 0;
-		for (int i = 0; i < list.size(); i++) {
-			if (list.get(i).getClass().equals(accessory.getClass()))
-				counter++;
-		}
-
-		return counter != 0;
-	}
-	
 }
