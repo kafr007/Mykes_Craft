@@ -39,100 +39,97 @@ public class ChooseAccessoriesController {
 
 	@Autowired
 	private ShoppingCartServiceImpl shoppingCartService;
-	
+
 	@Autowired
 	private CustomerRepositoryImpl customerRepo;
-	
+
 	@Autowired
 	private OrderRepositoryImpl orderRepo;
 
-
-
 	@Autowired
 	private AccessoryServiceImpl accessoryService;
-	
 
 	@GetMapping("/hilt")
 	public String displayHilt(Model model) {
 		model.addAttribute("hilts", accessoryService.findAllHilts());
 		log.info("Hiltbe beléptem");
 		log.info("list.size" + shoppingCartService.getList().size());
-		shoppingCartService.removeAll();;
+		shoppingCartService.removeAll();
+		;
 		log.info("list.size" + shoppingCartService.getList().size());
 		return "hilt";
 	}
 
-	 @RequestMapping({"/chooseahilt" })
-	public String chooseAHilt(HttpServletRequest request, Model model, @RequestParam(value = "id", defaultValue = "") String id) {
-		
+	@RequestMapping({ "/chooseahilt" })
+	public String chooseAHilt(HttpServletRequest request, Model model,
+			@RequestParam(value = "id", defaultValue = "") String id) {
+
 		log.info("hilt id" + id);
 		Hilt hilt = accessoryService.findHiltById(Integer.parseInt(id));
 		log.info(hilt.getName());
-		log.info("hilt price"+hilt.getPrice());
-		log.info(""+shoppingCartService.isAccessoryTypeAlreadyInTheCart(hilt));
-		if(shoppingCartService.isAccessoryTypeAlreadyInTheCart(hilt)) {
-			new AccessoryTypeAlreadyInTheCartException("Már van " + hilt.getClass() + " típus a kosárban"); 
-			log.info("Már van " + hilt.getClass() + " típus a kosárban");
-			}
-		else {
+		log.info("hilt price" + hilt.getPrice());
+		try {
+			shoppingCartService.isAccessoryTypeAlreadyInTheCart(hilt);
 			shoppingCartService.addProductToCart(hilt);
-			log.info("led list.size"+ shoppingCartService.getList().size());
-			log.info("led price"+ shoppingCartService.getAmount());
+			log.info("led list.size" + shoppingCartService.getList().size());
+			log.info("led price" + shoppingCartService.getAmount());
+		} catch (AccessoryTypeAlreadyInTheCartException e) {
+			e.printStackTrace();
 		}
 		return "redirect:/led";
- }	
-	 
-	 @GetMapping("/led")
-		public String displayLed(Model model) {
-			model.addAttribute("leds", accessoryService.findAllLeds());
-			
-			log.info("list.size" + shoppingCartService.getList().size());
-			return "led";
-		}
-	 
-	 @RequestMapping({"/choosealed" })
-		public String chooseALed(HttpServletRequest request, Model model, @RequestParam(value = "id", defaultValue = "") String id) {
-			log.info("Beléptem a ledbe");
-		 	log.info("led id" + id);
-			Led led = accessoryService.findLedById(Integer.parseInt(id));
-			log.info(led.getName());
-			log.info("" +led.getPrice());
-			if(shoppingCartService.isAccessoryTypeAlreadyInTheCart(led)) {
-				new AccessoryTypeAlreadyInTheCartException("Már van " + led.getClass() + " típus a kosárban"); //FIXME add information message to the customer
-				}
-			else {
-				shoppingCartService.addProductToCart(led);
-				log.info("led list.size"+ shoppingCartService.getList().size());
-				log.info("led price"+ shoppingCartService.getAmount());
-				
-			}
-			return "redirect:/cartconfirmation";
-	 }	
+	}
 
-	 
-	 @GetMapping("/cartconfirmation")
-		public String displayCart(Model model) {
-			model.addAttribute("accessories", shoppingCartService.getList());
-			model.addAttribute("amount", shoppingCartService.getAmount());
-			log.info(""+ shoppingCartService.getList());
-			return "cartconfirmation";
-		}
-	 
-	 @GetMapping(value = {"/customer-form"})
-		public String getCustomerData(Model model) {
-		 	model.addAttribute("customer", new Customer());
-			return "customer-form";
-		}
+	@GetMapping("/led")
+	public String displayLed(Model model) {
+		model.addAttribute("leds", accessoryService.findAllLeds());
 
-		@PostMapping(value = {"/customerdata"})
-		public String customerData(@ModelAttribute Customer customer) {
-			shoppingCartService.save(customer);
-			return "redirect:thankyou";
-				
+		log.info("list.size" + shoppingCartService.getList().size());
+		return "led";
+	}
+
+	@RequestMapping({ "/choosealed" })
+	public String chooseALed(HttpServletRequest request, Model model,
+			@RequestParam(value = "id", defaultValue = "") String id) {
+		log.info("Beléptem a ledbe");
+		log.info("led id" + id);
+		Led led = accessoryService.findLedById(Integer.parseInt(id));
+		log.info(led.getName());
+		log.info("" + led.getPrice());
+		try {
+			shoppingCartService.isAccessoryTypeAlreadyInTheCart(led);
+			shoppingCartService.addProductToCart(led);
+			log.info("led list.size" + shoppingCartService.getList().size());
+			log.info("led price" + shoppingCartService.getAmount());
+
+		} catch (AccessoryTypeAlreadyInTheCartException e) {
+			e.printStackTrace();
 		}
-	 
-		 @GetMapping(value = {"/thankyou"})
-			public String thankYouOrder(Model model) {
-				return "thankyou";
-			}
+		return "redirect:/cartconfirmation";
+	}
+
+	@GetMapping("/cartconfirmation")
+	public String displayCart(Model model) {
+		model.addAttribute("accessories", shoppingCartService.getList());
+		model.addAttribute("amount", shoppingCartService.getAmount());
+		log.info("" + shoppingCartService.getList());
+		return "cartconfirmation";
+	}
+
+	@GetMapping(value = { "/customer-form" })
+	public String getCustomerData(Model model) {
+		model.addAttribute("customer", new Customer());
+		return "customer-form";
+	}
+
+	@PostMapping(value = { "/customerdata" })
+	public String customerData(@ModelAttribute Customer customer) {
+		shoppingCartService.save(customer);
+		return "redirect:thankyou";
+
+	}
+
+	@GetMapping(value = { "/thankyou" })
+	public String thankYouOrder(Model model) {
+		return "thankyou";
+	}
 }

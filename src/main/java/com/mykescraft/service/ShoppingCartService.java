@@ -17,7 +17,7 @@ public interface ShoppingCartService {
 	
 	void save(Customer customer);
 	
-	boolean isAccessoryTypeAlreadyInTheCart(Accessory accessory);
+	boolean isAccessoryTypeAlreadyInTheCart(Accessory accessory) throws AccessoryTypeAlreadyInTheCartException;
 	
 	boolean cartIsEmpty();
 	
