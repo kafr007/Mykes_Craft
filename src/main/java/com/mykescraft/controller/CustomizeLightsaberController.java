@@ -33,18 +33,12 @@ import com.mykescraft.serviceimpl.AccessoryServiceImpl;
 import com.mykescraft.serviceimpl.ShoppingCartServiceImpl;
 
 @Controller
-public class ChooseAccessoriesController {
+public class CustomizeLightsaberController {
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	private ShoppingCartServiceImpl shoppingCartService;
-
-	@Autowired
-	private CustomerRepositoryImpl customerRepo;
-
-	@Autowired
-	private OrderRepositoryImpl orderRepo;
 
 	@Autowired
 	private AccessoryServiceImpl accessoryService;

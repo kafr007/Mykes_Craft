@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.mykescraft.model.Hilt;
 
 @Controller
-public class IndexController {
+public class HomeController {
 	
 	@GetMapping("/")
 	public String index() {

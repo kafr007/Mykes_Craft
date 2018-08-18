@@ -20,13 +20,13 @@ public class OrderRepositoryImpl implements OrderRepository {
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
-	public List<Order> findAllOrder() {
+	public List<Order> findAllOrder() { 	//FIXME
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Order findOrderById(int id) {
+	public Order findOrderById(int id) { 	//FIXME
 		// TODO Auto-generated method stub
 		return null;
 	}
