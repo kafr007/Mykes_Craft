@@ -1,0 +1,35 @@
+Buy unique lightsaber
+	As a consumer 
+	I can buy a unique lightsaber 
+	So that I own my unique lightsaber, no one has the same one
+	
+Acceptence criteria:
+	When I go the customize and buy your own lightsaber button in main page
+	when I choose lightsaber without blade
+	then I direct to choose a hilt page
+	
+	
+	Given I chose a hilt with blade
+	when I click next 
+	then I navigate to the choose a led page
+	
+	given I chose my led
+	when I click next
+	then I choose soundcard page
+	
+	given I chose soundcard
+	when I click next
+	then I choose button page
+	
+	given I chose button
+	when I click next
+	then I navigate to choose a blade page
+
+	given I chose blade
+	when I click finish
+	then I navigate to add your datas page
+
+	given I gave my name, address, phone, email
+	when I click finish
+	then I navigate to the thank you page
+	
