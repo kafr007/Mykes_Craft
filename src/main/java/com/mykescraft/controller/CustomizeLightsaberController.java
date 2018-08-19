@@ -9,10 +9,14 @@ import java.util.Set;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -110,16 +114,22 @@ public class CustomizeLightsaberController {
 	}
 
 	@GetMapping(value = { "/customer-form" })
-	public String getCustomerData(Model model) {
-		model.addAttribute("customer", new Customer());
-		return "customer-form";
+	public String getCustomerData(@ModelAttribute("customerform") Customer customer) {
+			return "customer-form";
 	}
 
 	@PostMapping(value = { "/customerdata" })
-	public String customerData(@ModelAttribute Customer customer) {
-		shoppingCartService.save(customer);
-		return "redirect:thankyou";
-
+	public String customerData(@ModelAttribute("customerform") @Valid Customer customer, 
+			BindingResult result, HttpServletResponse response) {
+		if(result.hasErrors()) {
+			response.setStatus(HttpStatus.BAD_REQUEST.value());
+			result.reject("subscirptionForm.error.incompleteInput");
+			return "customer-form";
+		}
+		else {
+			shoppingCartService.save(customer);
+			return "redirect:thankyou";
+		}
 	}
 
 	@GetMapping(value = { "/thankyou" })
