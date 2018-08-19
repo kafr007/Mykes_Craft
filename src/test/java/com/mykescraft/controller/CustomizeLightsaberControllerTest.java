@@ -1,5 +1,10 @@
 package com.mykescraft.controller;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -11,6 +16,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -19,7 +25,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
+import com.mykescraft.model.Accessory;
 import com.mykescraft.model.Customer;
+import com.mykescraft.service.exception.AccessoryTypeAlreadyInTheCartException;
 import com.mykescraft.serviceimpl.AccessoryServiceImpl;
 import com.mykescraft.serviceimpl.ShoppingCartServiceImpl;
 
@@ -35,6 +43,12 @@ public class CustomizeLightsaberControllerTest {
     
     @MockBean
     private ShoppingCartServiceImpl cartService;
+    
+    @MockBean
+    private AccessoryTypeAlreadyInTheCartException typeException;
+    
+    @MockBean
+    private Accessory accessory;
    
     private ResultActions result;
 	
@@ -49,6 +63,7 @@ public class CustomizeLightsaberControllerTest {
     private final String PATH_CUSTOMERDATA = "/customerdata";
     private final String PATH_THANKYOU ="/thankyou";
     private final String VIEW_THANKYOU ="thankyou";
+    private final String PATH_CHOOSEAHILT = "/chooseahilt";
     private final String FORM_FIELD_NAME = "name";
     private final String FORM_FIELD_ADDRESS = "customerAddress";
     private final String FORM_FIELD_EMAIL = "email";
@@ -145,6 +160,6 @@ public class CustomizeLightsaberControllerTest {
 		then_theCustomerIsRedirectedToTheConfirmationPage();
 	}
 	
-    
+	
     
 }
