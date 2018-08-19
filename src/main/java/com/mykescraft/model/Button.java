@@ -9,5 +9,9 @@ public class Button extends Accessory {
 	
 	 public Button() {   
 	  }
+	 
+	 public Button(String name, double price, String imageUrl) {   
+		 super(name, price, imageUrl);
+	 }
 
 }
