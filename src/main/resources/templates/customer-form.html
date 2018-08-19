@@ -18,22 +18,22 @@
 		href="contact" th:text="#{index.contact}">Contact</a>
 </nav>
 <form name="customerdata" th:action="@{/customerdata}" th:object="${customerform}" method="post">
-			<h2 class="teaser" style="text-align: center" th:text="#{customer.form.info}">Kérlek add meg az adataid</h2>
+			<h2 class="teaser" style="text-align: center" th:text="#{customer.form.info}">Add your personal datas</h2>
 				
 				<div class="fieldErrorMessage" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Form error</div>
-				<input type="text" id="name" name="name" th:field="*{name}" class="form-control" th:placeholder="#{customer.form.name.placeholder}" placeholder="Teljes név"  /> 
+				<input type="text" id="name" name="name" th:field="*{name}" class="form-control" th:placeholder="#{customer.form.name.placeholder}" placeholder="Full name"  /> 
 		 	       
 			    <br></br>
 		 	    <div class="fieldErrorMessage" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Form error</div>
-		 	    <input type="text" id="email" name="email" th:field="*{email}" class="form-control" th:placeholder="#{customer.form.email.placeholder}"  placeholder="E-mail cím"  /> 
+		 	    <input type="text" id="email" name="email" th:field="*{email}" class="form-control" th:placeholder="#{customer.form.email.placeholder}"  placeholder="E-mail"  /> 
 				    
 			    <br></br>
 			    <div class="fieldErrorMessage" th:if="${#fields.hasErrors('customerAddress')}" th:errors="*{customerAddress}">Form error</div>
-			    <input type="text" id="customerAddress" name="customerAddress" th:field="*{customerAddress}"  class="form-control" th:placeholder="#{customer.form.address.placeholder}" placeholder="Cím" />
+			    <input type="text" id="customerAddress" name="customerAddress" th:field="*{customerAddress}"  class="form-control" th:placeholder="#{customer.form.address.placeholder}" placeholder="Address" />
 			    
 			    <br></br>
 			    <div class="fieldErrorMessage" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">Form error</div>
-			    <input type="text" id="phoneNumber" name="phoneNumber" th:field="*{phoneNumber}"  class="form-control" th:placeholder="#{customer.form.phone.placeholder}" placeholder="Telszám" />
+			    <input type="text" id="phoneNumber" name="phoneNumber" th:field="*{phoneNumber}"  class="form-control" th:placeholder="#{customer.form.phone.placeholder}" placeholder="Phone" />
 			    
 			    <br></br>
 			<div class="formErrorMessage" th:if="${#fields.hasErrors('global')}" th:errors="*{global}">Form error</div>

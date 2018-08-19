@@ -19,16 +19,16 @@
 		th:text="#{index.contact}">Contact</a>
 </nav>
 <div class="teaser" style="text-align: center">
-	<h1 th:text="#{hilt.info}">Válassz egy markolatot</h1>
-	<h3 th:text="#{info}">Egyet válassz</h3>
+	<h1 th:text="#{hilt.info}">Choose a hilt</h1>
+	<h3 th:text="#{info}">Choose one</h3>
 </div>
 
 
 <section class="teaser" th:each="hilt : ${hilts}">
 	<div>
-		<h1 th:text="${hilt.name}">Ez a neve a terméknek</h1>
+		<h1 th:text="${hilt.name}">Name</h1>
 		<img th:src="${hilt.imageUrl}" height="150" width="200">
-		<p th:text="${hilt.price} + #{euro}">Ez az ára a terméknek</p>
+		<p th:text="${hilt.price} + #{euro}">Price</p>
 
 		<a th:text="#{add.to.cart}" th:href="@{|/chooseahilt?id=${hilt.id}|}">Buy
 			Now</a>
