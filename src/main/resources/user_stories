@@ -27,9 +27,19 @@ Acceptence criteria:
 
 	given I chose blade
 	when I click finish
-	then I navigate to add your datas page
+	then I navigate to shopping confirmation page
+	
+	given I can check my lightsaber accessories and price
+	when I click confirm
+	then I navigate to	add your customer-form page
+	when I click empty cart
+	then I navigate to hilt page  and my cart is empty
 
 	given I gave my name, address, phone, email
 	when I click finish
+	then check my datas
+	when they are valid
 	then I navigate to the thank you page
+	when they are not valid
+	then I get an error message
 	
