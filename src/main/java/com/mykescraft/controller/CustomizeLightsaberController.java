@@ -50,11 +50,11 @@ public class CustomizeLightsaberController {
 	@GetMapping("/hilt")
 	public String displayHilt(Model model) {
 		model.addAttribute("hilts", accessoryService.findAllHilts());
-		log.info("Hiltbe beléptem");
-		log.info("list.size" + shoppingCartService.getList().size());
+		log.debug("Hiltbe beléptem");
+		log.debug("list.size" + shoppingCartService.getList().size());
 		shoppingCartService.removeAll();
 		;
-		log.info("list.size" + shoppingCartService.getList().size());
+		log.debug("list.size" + shoppingCartService.getList().size());
 		return "hilt";
 	}
 
@@ -62,12 +62,11 @@ public class CustomizeLightsaberController {
 	public String chooseAHilt(HttpServletRequest request, Model model,
 			@RequestParam(value = "id", defaultValue = "") String id) {
 
-		log.info("hilt id" + id);
+		log.debug("hilt id" + id);
 		Hilt hilt = accessoryService.findHiltById(Integer.parseInt(id));
-		log.info(hilt.getName());
-		log.info("hilt price" + hilt.getPrice());
+		log.debug(hilt.getName());
+		log.debug("hilt price" + hilt.getPrice());
 		try {
-			shoppingCartService.isAccessoryTypeAlreadyInTheCart(hilt);
 			shoppingCartService.addProductToCart(hilt);
 			log.info("led list.size" + shoppingCartService.getList().size());
 			log.info("led price" + shoppingCartService.getAmount());
@@ -81,23 +80,22 @@ public class CustomizeLightsaberController {
 	public String displayLed(Model model) {
 		model.addAttribute("leds", accessoryService.findAllLeds());
 
-		log.info("list.size" + shoppingCartService.getList().size());
+		log.debug("list.size" + shoppingCartService.getList().size());
 		return "led";
 	}
 
 	@RequestMapping({ "/choosealed" })
 	public String chooseALed(HttpServletRequest request, Model model,
 			@RequestParam(value = "id", defaultValue = "") String id) {
-		log.info("Beléptem a ledbe");
-		log.info("led id" + id);
+		log.debug("Beléptem a ledbe");
+		log.debug("led id" + id);
 		Led led = accessoryService.findLedById(Integer.parseInt(id));
-		log.info(led.getName());
-		log.info("" + led.getPrice());
+		log.debug(led.getName());
+		log.debug("" + led.getPrice());
 		try {
-			shoppingCartService.isAccessoryTypeAlreadyInTheCart(led);
 			shoppingCartService.addProductToCart(led);
-			log.info("led list.size" + shoppingCartService.getList().size());
-			log.info("led price" + shoppingCartService.getAmount());
+			log.debug("led list.size" + shoppingCartService.getList().size());
+			log.debug("led price" + shoppingCartService.getAmount());
 
 		} catch (AccessoryTypeAlreadyInTheCartException e) {
 			e.printStackTrace();
@@ -109,7 +107,7 @@ public class CustomizeLightsaberController {
 	public String displayCart(Model model) {
 		model.addAttribute("accessories", shoppingCartService.getList());
 		model.addAttribute("amount", shoppingCartService.getAmount());
-		log.info("" + shoppingCartService.getList());
+		log.debug("" + shoppingCartService.getList());
 		return "cartconfirmation";
 	}
 
@@ -127,6 +125,7 @@ public class CustomizeLightsaberController {
 			return "customer-form";
 		}
 		else {
+			log.info("Customer: " + customer.toString());
 			shoppingCartService.save(customer);
 			return "redirect:/thankyou";
 		}
