@@ -1,8 +1,10 @@
 package com.mykescraft.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.xpath;
@@ -58,6 +60,7 @@ public class CustomizeLightsaberControllerTest {
     private final String VIEW_CARTCONFIRMATION = "cartconfirmation";
     private final String PATH_CUSTOMERFORM = "/customer-form";
     private final String VIEW_CUSTOMERFORM = "customer-form";
+    private final String PATH_CUSTOMERDATA = "/customerdata";
     private final String PATH_THANKYOU ="/thankyou";
     private final String VIEW_THANKYOU ="thankyou";
     private final String FORM_FIELD_NAME = "name";
@@ -131,6 +134,29 @@ public class CustomizeLightsaberControllerTest {
 	public void testCustomerFormIsEmptyWhenFormIsOpen() throws Exception{
 		given_theCustomerIsOnTheCustomerFormPage();
 		then_theFormContains(new Customer("", "", "", ""));
+	}
+	
+	private void when_customerFillCustomerForm(final Customer customerFormInput) throws Exception{
+		result = mockMvc.perform(
+				post(PATH_CUSTOMERDATA)
+				.accept(MediaType.TEXT_HTML)
+				.param(FORM_FIELD_NAME, customerFormInput.getName())
+				.param(FORM_FIELD_ADDRESS, customerFormInput.getCustomerAddress())
+				.param(FORM_FIELD_EMAIL, customerFormInput.getEmail())
+				.param(FORM_FIELD_PHONE, customerFormInput.getPhoneNumber()));
+	}
+	
+	private void then_theCustomerIsRedirectedToTheConfirmationPage() throws Exception{
+		result.andDo(print())
+			.andExpect(status().is3xxRedirection())
+			.andExpect(redirectedUrl(PATH_THANKYOU));
+	}
+	
+	@Test
+	public void testCustomerFormTakesCorrectlySubmittedData() throws Exception{
+		given_theCustomerIsOnTheCustomerFormPage();
+		when_customerFillCustomerForm(new Customer("Lali", "kafr@freemail.hu", "dksjdksld", "1254646"));
+		then_theCustomerIsRedirectedToTheConfirmationPage();
 	}
 	
     

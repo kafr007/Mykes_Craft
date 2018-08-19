@@ -128,7 +128,7 @@ public class CustomizeLightsaberController {
 		}
 		else {
 			shoppingCartService.save(customer);
-			return "redirect:thankyou";
+			return "redirect:/thankyou";
 		}
 	}
 
