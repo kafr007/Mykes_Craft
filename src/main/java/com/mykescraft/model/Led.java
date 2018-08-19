@@ -14,11 +14,11 @@ public class Led extends Accessory {
 	private String color;
 
 	public Led() {
+		
 	}
-
 	
-	public Led(String color) {
-		super();
+	public Led(String name, double price, String imageUrl, String color) {
+		super(name, price, imageUrl);
 		this.color = color;
 	}
 
