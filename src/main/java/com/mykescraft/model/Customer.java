@@ -54,6 +54,17 @@ public class Customer {
 	public Customer() {
 
 	}
+	
+	
+
+	public Customer(@Size(min = 3, max = 30) @NotBlank String name, @Email @NotBlank String email,
+			@NotBlank String customerAddress, @NotBlank String phoneNumber) {
+		super();
+		this.name = name;
+		this.email = email;
+		this.customerAddress = customerAddress;
+		this.phoneNumber = phoneNumber;
+	}
 
 	public String getId() {
 		return id;

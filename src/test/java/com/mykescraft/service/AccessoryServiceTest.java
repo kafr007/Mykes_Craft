@@ -10,16 +10,17 @@ import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import com.mykescraft.model.Accessory;
 import com.mykescraft.model.Hilt;
 import com.mykescraft.model.Led;
 import com.mykescraft.repositoryimpl.AccessoryRepositoryImpl;
 import com.mykescraft.serviceimpl.AccessoryServiceImpl;
-
 
 public class AccessoryServiceTest {
 	

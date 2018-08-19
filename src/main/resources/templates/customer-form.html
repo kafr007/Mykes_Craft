@@ -2,8 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"
-	charset="UTF-8">
+<meta name="viewport" content="text/html, width=device-width, initial-scale=1.0"
+	charset="UTF-8"></meta>
 <title th:text="#{app.title}">"Myke's Craft</title>
 <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"
 	href="../static/css/index.css" />
@@ -22,20 +22,20 @@
 				
 				<div class="fieldErrorMessage" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Form error</div>
 				<input type="text" id="name" name="name" th:field="*{name}" class="form-control" placeholder="Teljes név"  /> 
-		 	    <br>
-			    <br>
+		 	       
+			    <br></br>
 		 	    <div class="fieldErrorMessage" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Form error</div>
 		 	    <input type="text" id="email" name="email" th:field="*{email}" class="form-control" placeholder="E-mail cím"  /> 
-				<br>
-			    <br>
+				    
+			    <br></br>
 			    <div class="fieldErrorMessage" th:if="${#fields.hasErrors('customerAddress')}" th:errors="*{customerAddress}">Form error</div>
 			    <input type="text" id="customerAddress" name="customerAddress" th:field="*{customerAddress}"  class="form-control" placeholder="Cím" />
-			    <br>
-			    <br>
+			    
+			    <br></br>
 			    <div class="fieldErrorMessage" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">Form error</div>
 			    <input type="text" id="phoneNumber" name="phoneNumber" th:field="*{phoneNumber}"  class="form-control" placeholder="Telszám" />
-			    <br>
-			    <br>
+			    
+			    <br></br>
 			<div class="formErrorMessage" th:if="${#fields.hasErrors('global')}" th:errors="*{global}">Form error</div>
 			<button class="btn btn-lg btn-primary btn-block" type="submit">Rendelés</button>
 		</form>
