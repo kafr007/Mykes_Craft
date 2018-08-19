@@ -4,39 +4,41 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.test.context.TestPropertySource;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.mykescraft.model.Accessory;
+import com.mykescraft.model.Button;
 import com.mykescraft.model.Hilt;
+import com.mykescraft.model.Led;
 import com.mykescraft.service.exception.AccessoryIsNotInTheCart;
 import com.mykescraft.service.exception.AccessoryTypeAlreadyInTheCartException;
 import com.mykescraft.serviceimpl.ShoppingCartServiceImpl;
 
 public class ShoppingCartServiceListTest {
 	
-	@Mock
+	@MockBean
 	private ShoppingCartServiceImpl  cartService;
 	
 	List<Accessory> testList;
 	
-	Hilt hilt1 = new Hilt("valami", 25.6, "http");
-	Hilt hilt2 = new Hilt("valami1", 36.0, "https");
+	
+	
+	Hilt hilt = new Hilt("valami", 25.6, "http");
+	Led led = new Led("led", 30.6, "http", "red");
 	
 	@Before
 	public void init() {
 		MockitoAnnotations.initMocks(this);
 		cartService=new ShoppingCartServiceImpl();
 		testList = cartService.getList();
-		testList.add(hilt1);
-		testList.add(hilt2);
+		testList.add(hilt);
+		testList.add(led);
 	}
 	
 	@Test
@@ -50,8 +52,8 @@ public class ShoppingCartServiceListTest {
 	}
 	
 	@Test
-	public void testAddProductToTheCart() {
-		cartService.addProductToCart(new Hilt("kicsi", 35.6, "https//"));
+	public void testAddProductToTheCart() throws AccessoryTypeAlreadyInTheCartException {
+		cartService.addProductToCart(new Button("kicsi", 35.6, "https//"));
 		assertEquals("Add product", 3, testList.size());
 	}
 	
@@ -68,7 +70,7 @@ public class ShoppingCartServiceListTest {
 	
 	@Test(expected= AccessoryTypeAlreadyInTheCartException.class)
 	public void testIsAccessoryAlreadyInTheCart() throws AccessoryTypeAlreadyInTheCartException {
-		cartService.isAccessoryTypeAlreadyInTheCart(hilt1);
+		cartService.addProductToCart(hilt);;
 	}
 	
 	@After

@@ -11,13 +11,11 @@ import com.mykescraft.service.exception.AccessoryTypeAlreadyInTheCartException;
 
 public interface ShoppingCartService {
 	
-	void addProductToCart(Accessory accessory);
+	void addProductToCart(Accessory accessory) throws AccessoryTypeAlreadyInTheCartException;
 	
 	void removeProductFromCart(Accessory accessory) throws AccessoryIsNotInTheCart;
 	
 	void save(Customer customer);
-	
-	boolean isAccessoryTypeAlreadyInTheCart(Accessory accessory) throws AccessoryTypeAlreadyInTheCartException;
 	
 	boolean cartIsEmpty();
 	

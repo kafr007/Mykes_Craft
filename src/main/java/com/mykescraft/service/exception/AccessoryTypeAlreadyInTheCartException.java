@@ -6,4 +6,8 @@ public class AccessoryTypeAlreadyInTheCartException extends Exception {
 		super(message);
 	}
 
+	public AccessoryTypeAlreadyInTheCartException() {
+		// TODO Auto-generated constructor stub
+	}
+
 }

@@ -54,10 +54,22 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 	}
 
 	@Override
-	public void addProductToCart(Accessory accessory) {
-		list.add(accessory);
-		amount += accessory.getPrice();
-		
+	public void addProductToCart(Accessory accessory) throws AccessoryTypeAlreadyInTheCartException {
+		if(!isAccessoryTypeAlreadyInTheCart(accessory)) {
+			list.add(accessory);
+			amount += accessory.getPrice();
+		}		
+	}
+	
+	private boolean isAccessoryTypeAlreadyInTheCart(Accessory accessory) throws AccessoryTypeAlreadyInTheCartException {
+		int counter = 0;
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i).getClass().equals(accessory.getClass()))
+				counter++;
+		}
+		if(counter!=0)
+			throw  new AccessoryTypeAlreadyInTheCartException("Már van " + accessory.getClass() + " ilyen termék a kosárban");
+		return counter != 0;
 	}
 
 	@Override
@@ -68,27 +80,12 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 		list.remove(accessory);
 		amount -= accessory.getPrice();	
 	}
-
-	@Override
-	public boolean isAccessoryTypeAlreadyInTheCart(Accessory accessory) throws AccessoryTypeAlreadyInTheCartException {
-		int counter = 0;
-		for (int i = 0; i < list.size(); i++) {
-			if (list.get(i).getClass().equals(accessory.getClass()))
-				counter++;
-		}
-		if(counter!=0)
-			throw  new AccessoryTypeAlreadyInTheCartException("Már van " + accessory.getClass() + " ilyen termék a kosárban");
-		return counter != 0;
-	}
-	
-
-	
+		
 	@Override
 	public void save(Customer customer) {
-		log.info(customer.toString());
 		Order order = new Order();
 		order.setId(UUID.randomUUID().toString());
-		//log.info("id" + order.getId());
+		log.debug("id" + order.getId());
 		customer.setId(UUID.randomUUID().toString());
 		customerRepo.saveCustomerData(customer);
 		order.setAmount(amount);
