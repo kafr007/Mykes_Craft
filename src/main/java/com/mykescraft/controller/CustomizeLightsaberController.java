@@ -53,7 +53,6 @@ public class CustomizeLightsaberController {
 		log.debug("Hiltbe beléptem");
 		log.debug("list.size" + shoppingCartService.getList().size());
 		shoppingCartService.removeAll();
-		;
 		log.debug("list.size" + shoppingCartService.getList().size());
 		return "hilt";
 	}

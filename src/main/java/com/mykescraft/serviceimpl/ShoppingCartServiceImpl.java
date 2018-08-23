@@ -53,6 +53,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 		list.clear();		
 	}
 
+	/* Add product to the cart, if product type is already in the basket, it throws exception*/
 	@Override
 	public void addProductToCart(Accessory accessory) throws AccessoryTypeAlreadyInTheCartException {
 		if(!isAccessoryTypeAlreadyInTheCart(accessory)) {
@@ -86,8 +87,10 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 		Order order = new Order();
 		order.setId(UUID.randomUUID().toString());
 		log.debug("id" + order.getId());
+		//Set and save customer
 		customer.setId(UUID.randomUUID().toString());
 		customerRepo.saveCustomerData(customer);
+		//Set and save order
 		order.setAmount(amount);
 		order.setOrderDate(new Date());
 		order.setCustomer(customer);
