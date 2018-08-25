@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.mykescraft.model.Hilt;
 import com.mykescraft.model.Led;
+import com.mykescraft.model.Soundcard;
 import com.mykescraft.repositoryimpl.AccessoryRepositoryImpl;
 import com.mykescraft.service.AccessoryService;
 
@@ -28,11 +29,21 @@ public class AccessoryServiceImpl implements AccessoryService {
 		return accessoryRepo.findAllLeds();
 	}
 	
-	public Hilt findHiltById(int id) {
+	@Override
+	public ArrayList<Soundcard> findAllSoundcards(){
+		return accessoryRepo.findAllSoundcards();
+	}
+	
+	@Override
+	public Soundcard findSoundcardById(long id) {
+		return accessoryRepo.findSoundcardById(id);
+	}
+	
+	public Hilt findHiltById(long id) {
 		return accessoryRepo.findHiltById(id);
 	}
 	
-	public Led findLedById(int id) {
+	public Led findLedById(long id) {
 		return accessoryRepo.findLedById(id);
 	}
 

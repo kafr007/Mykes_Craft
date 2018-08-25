@@ -15,3 +15,13 @@ values ('Blue', 15, 'blue', 'https://i.imgur.com/gw5XZux.jpg', 'led');
 
 insert into accessories(name, price, color, image_url,accessory_type)
 values ('White', 12, 'white', 'https://i.imgur.com/Zl8tDa3.jpg', 'led');
+
+insert into accessories(name, price, image_url, accessory_type)
+values ('Mute', 10, 'https://i.imgur.com/KV8V36e.jpg', 'soundcard');
+
+insert into accessories(name, price, image_url, accessory_type)
+values ('Noisy', 15, 'https://i.imgur.com/gw5XZux.jpg', 'soundcard');
+
+insert into accessories(name, price, image_url,accessory_type)
+values ('Silent', 12,'https://i.imgur.com/Zl8tDa3.jpg', 'soundcard');
+

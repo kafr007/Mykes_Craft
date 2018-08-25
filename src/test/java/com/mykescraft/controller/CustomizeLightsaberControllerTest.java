@@ -68,6 +68,9 @@ public class CustomizeLightsaberControllerTest {
     private final String FORM_FIELD_ADDRESS = "customerAddress";
     private final String FORM_FIELD_EMAIL = "email";
     private final String FORM_FIELD_PHONE = "phoneNumber";
+    private final String PATH_SOUNDCARD = "/soundcard";
+    private final String VIEW_SOUNDCARD = "soundcard";
+    private final String PATH_CHOOSEASOUNDCARD = "/chooseasoundcard";
     
     private final String CONTENTTYPE_HTML_UTF8 = "text/html;charset=UTF-8";
     
@@ -85,6 +88,14 @@ public class CustomizeLightsaberControllerTest {
            this.mockMvc.perform(get(PATH_LED))
                 .andExpect(status().isOk())
                 .andExpect(view().name(VIEW_LED))
+                .andDo(print());
+    }
+    
+    @Test
+    public void testSoundcard() throws Exception{
+           this.mockMvc.perform(get(PATH_SOUNDCARD))
+                .andExpect(status().isOk())
+                .andExpect(view().name(VIEW_SOUNDCARD))
                 .andDo(print());
     }
     

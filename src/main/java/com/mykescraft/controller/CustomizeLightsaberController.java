@@ -30,6 +30,7 @@ import com.mykescraft.model.Customer;
 import com.mykescraft.model.Hilt;
 import com.mykescraft.model.Led;
 import com.mykescraft.model.Order;
+import com.mykescraft.model.Soundcard;
 import com.mykescraft.repositoryimpl.CustomerRepositoryImpl;
 import com.mykescraft.repositoryimpl.OrderRepositoryImpl;
 import com.mykescraft.service.exception.AccessoryTypeAlreadyInTheCartException;
@@ -93,6 +94,33 @@ public class CustomizeLightsaberController {
 		log.debug("" + led.getPrice());
 		try {
 			shoppingCartService.addProductToCart(led);
+			log.debug("led list.size" + shoppingCartService.getList().size());
+			log.debug("led price" + shoppingCartService.getAmount());
+
+		} catch (AccessoryTypeAlreadyInTheCartException e) {
+			e.printStackTrace();
+		}
+		return "redirect:/soundcard";
+	}
+	
+	@GetMapping("/soundcard")
+	public String displaySoundcard(Model model) {
+		model.addAttribute("soundcards", accessoryService.findAllSoundcards());
+
+		log.debug("list.size" + shoppingCartService.getList().size());
+		return "soundcard";
+	}
+
+	@RequestMapping({ "/chooseasoundcard" })
+	public String chooseASoundcard(HttpServletRequest request, Model model,
+			@RequestParam(value = "id", defaultValue = "") String id) {
+		log.debug("Beléptem a soundcardba");
+		log.debug("soundcard id" + id);
+		Soundcard soundcard = accessoryService.findSoundcardById(Integer.parseInt(id));
+		log.debug(soundcard.getName());
+		log.debug("" + soundcard.getPrice());
+		try {
+			shoppingCartService.addProductToCart(soundcard);
 			log.debug("led list.size" + shoppingCartService.getList().size());
 			log.debug("led price" + shoppingCartService.getAmount());
 

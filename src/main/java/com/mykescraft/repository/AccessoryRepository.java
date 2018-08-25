@@ -15,7 +15,7 @@ public interface AccessoryRepository {
 	
 	Led findLedById(long id);
 	
-	Soundcard findSOundcardById(long id);
+	Soundcard findSoundcardById(long id);
 	
 	ArrayList<Blade> findAllBlades();
 	

@@ -175,7 +175,7 @@ public class AccessoryRepositoryImpl implements AccessoryRepository {
 	}
 
 	@Override
-	public Soundcard findSOundcardById(long id) {
+	public Soundcard findSoundcardById(long id) {
 		return (Soundcard) jdbcTemplate.queryForObject(FINDSOUNDCARDBYIDSQL, soundcardMapper, id);
 	}
 	

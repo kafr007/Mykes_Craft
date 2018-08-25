@@ -23,6 +23,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.mykescraft.MykesCraftApplication;
 import com.mykescraft.model.Hilt;
 import com.mykescraft.model.Led;
+import com.mykescraft.model.Soundcard;
 import com.mykescraft.repositoryimpl.AccessoryRepositoryImpl;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -33,20 +34,20 @@ public class AccessoryRepositoryTest {
 	private AccessoryRepositoryImpl accessoryRepo;
 
 	@Test
-	public void findAllHilt() {
+	public void testFindAllHilt() {
 		List<Hilt> hilts = accessoryRepo.findAllHilts();
 		assertNotNull(hilts);
 		assertTrue(!hilts.isEmpty());
 	}
 	
 	@Test
-	public void findHiltById1() {
+	public void testFindHiltById1() {
 		Hilt hilt = accessoryRepo.findHiltById(1);
 		assertNotNull(hilt);
 	}
 	
 	@Test
-	public void findHiltById2() {
+	public void testFindHiltById2() {
 		Hilt hilt = new Hilt();
 		hilt = accessoryRepo.findHiltById(1);
 		assertEquals(hilt.getName(), "Boros");
@@ -56,24 +57,31 @@ public class AccessoryRepositoryTest {
 	}
 	
 	@Test
-	public void findAllLed() {
+	public void testFindAllLed() {
 		List<Led> leds = accessoryRepo.findAllLeds();
 		assertNotNull(leds);
 		assertTrue(!leds.isEmpty());
 	}
 	
 	@Test
-	public void findHLedById1() {
+	public void testFindHLedById1() {
 		Led led = accessoryRepo.findLedById(4);
 		assertNotNull(led);
 	}
 	
 	@Test
-	public void findHLedById2() {
+	public void testFindHLedById2() {
 		Led led = accessoryRepo.findLedById(4);
 		assertEquals(led.getName(), "Red");
 		assert(led.getPrice()==10);
 		assertEquals(led.getImageUrl(), "https://i.imgur.com/KV8V36e.jpg");
+	}
+	
+	@Test
+	public void testFindAllSoundard() {
+		List<Soundcard> soundcards = accessoryRepo.findAllSoundcards();
+		assertNotNull(soundcards);
+		assertTrue(!soundcards.isEmpty());
 	}
 
 }
