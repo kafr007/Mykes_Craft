@@ -30,7 +30,14 @@ public abstract class Accessory {
 
 	public Accessory() {
 	}
-
+	
+	public Accessory(long id, String name, double price, String imageUrl) {
+		this.id= id;
+		this.name = name;
+		this.price = price;
+		this.imageUrl=imageUrl;
+	}
+	
 	public Accessory(String name, double price, String imageUrl) {
 		this.name = name;
 		this.price = price;
