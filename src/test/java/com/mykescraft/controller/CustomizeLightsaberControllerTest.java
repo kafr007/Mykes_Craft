@@ -14,6 +14,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.xpath;
 
+import java.net.URI;
+
+import org.hamcrest.Matcher;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -34,25 +37,8 @@ import com.mykescraft.serviceimpl.ShoppingCartServiceImpl;
 @RunWith(SpringRunner.class)
 @WebMvcTest(CustomizeLightsaberController.class)
 public class CustomizeLightsaberControllerTest {
-    
-	@Autowired
-    private MockMvc mockMvc;
-   
-    @MockBean
-    private AccessoryServiceImpl accessoryService;
-    
-    @MockBean
-    private ShoppingCartServiceImpl cartService;
-    
-    @MockBean
-    private AccessoryTypeAlreadyInTheCartException typeException;
-    
-    @MockBean
-    private Accessory accessory;
-   
-    private ResultActions result;
-	
-    private final String PATH_HILT = "/hilt";
+
+	private final String PATH_HILT = "/hilt";
     private final String VIEW_HILT = "hilt";
     private final String PATH_LED = "/led";
     private final String VIEW_LED = "led";
@@ -71,9 +57,27 @@ public class CustomizeLightsaberControllerTest {
     private final String PATH_SOUNDCARD = "/soundcard";
     private final String VIEW_SOUNDCARD = "soundcard";
     private final String PATH_CHOOSEASOUNDCARD = "/chooseasoundcard";
+    private static final String PATH_BUTTON = "/button";
+    private static final String VIEW_BUTTON = "button";
     
     private final String CONTENTTYPE_HTML_UTF8 = "text/html;charset=UTF-8";
+	
+	@Autowired
+    private MockMvc mockMvc;
+   
+    @MockBean
+    private AccessoryServiceImpl accessoryService;
     
+    @MockBean
+    private ShoppingCartServiceImpl cartService;
+    
+    @MockBean
+    private AccessoryTypeAlreadyInTheCartException typeException;
+    
+    @MockBean
+    private Accessory accessory;
+   
+    private ResultActions result;
 	    
     @Test
     public void testHilt() throws Exception{
@@ -96,6 +100,14 @@ public class CustomizeLightsaberControllerTest {
            this.mockMvc.perform(get(PATH_SOUNDCARD))
                 .andExpect(status().isOk())
                 .andExpect(view().name(VIEW_SOUNDCARD))
+                .andDo(print());
+    }
+    
+    @Test
+    public void tesButton() throws Exception{
+           this.mockMvc.perform(get(PATH_BUTTON))
+                .andExpect(status().isOk())
+                .andExpect(view().name(VIEW_BUTTON))
                 .andDo(print());
     }
     

@@ -22,10 +22,16 @@
 	<h1 th:text="#{button.info}">Choose a button</h1>
 	<h3 th:text="#{info}">Choose one</h3>
 </div>
+<section class="teaser" th:each="button : ${buttons}">
+	<div>
+		<h1 th:text="${button.name}">Name of the product</h1>
+		<img th:src="${button.imageUrl}" height="150" width="200">
+		<p th:text="${button.price} + #{euro}">Price of the product</p>
 
+		<a th:text="#{add.to.cart}"th:href="@{|/chooseabutton?id=${button.id}|}">Buy Now</a>
+		</div>
 
-
-
+</section>
 <footer>
 	<p th:text="#{footer.emailaddress}">mykescraft@gmail.com</p>
 	<div class="phone">

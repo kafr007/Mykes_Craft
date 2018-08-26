@@ -81,16 +81,18 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 		list.remove(accessory);
 		amount -= accessory.getPrice();	
 	}
-		
-	@Override
-	public void save(Customer customer) {
+	
+	private Order saveCustomer(Customer customer) {
 		Order order = new Order();
 		order.setId(UUID.randomUUID().toString());
-		log.debug("id" + order.getId());
-		//Set and save customer
 		customer.setId(UUID.randomUUID().toString());
 		customerRepo.saveCustomerData(customer);
-		//Set and save order
+		return order;
+	}
+	
+	@Override
+	public void save(Customer customer) {
+		Order order = saveCustomer(customer);
 		order.setAmount(amount);
 		order.setOrderDate(new Date());
 		order.setCustomer(customer);

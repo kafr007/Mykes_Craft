@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mykescraft.model.Accessory;
+import com.mykescraft.model.Button;
 import com.mykescraft.model.Customer;
 import com.mykescraft.model.Hilt;
 import com.mykescraft.model.Led;
@@ -121,8 +122,35 @@ public class CustomizeLightsaberController {
 		log.debug("" + soundcard.getPrice());
 		try {
 			shoppingCartService.addProductToCart(soundcard);
-			log.debug("led list.size" + shoppingCartService.getList().size());
-			log.debug("led price" + shoppingCartService.getAmount());
+			log.debug("soundcard list.size" + shoppingCartService.getList().size());
+			log.debug("soundcard price" + shoppingCartService.getAmount());
+
+		} catch (AccessoryTypeAlreadyInTheCartException e) {
+			e.printStackTrace();
+		}
+		return "redirect:/button";
+	}
+	
+	@GetMapping("/button")
+	public String displayButton(Model model) {
+		model.addAttribute("buttons", accessoryService.findAllButtons());
+
+		log.debug("list.size" + shoppingCartService.getList().size());
+		return "button";
+	}
+
+	@RequestMapping({ "/chooseabutton" })
+	public String chooseAButton(HttpServletRequest request, Model model,
+			@RequestParam(value = "id", defaultValue = "") String id) {
+		log.debug("Beléptem a buttonba");
+		log.debug("buttonid" + id);
+		Button button = accessoryService.findButtonById(Integer.parseInt(id));
+		log.debug(button.getName());
+		log.debug("" + button.getPrice());
+		try {
+			shoppingCartService.addProductToCart(button);
+			log.debug("button list.size" + shoppingCartService.getList().size());
+			log.debug("button price" + shoppingCartService.getAmount());
 
 		} catch (AccessoryTypeAlreadyInTheCartException e) {
 			e.printStackTrace();

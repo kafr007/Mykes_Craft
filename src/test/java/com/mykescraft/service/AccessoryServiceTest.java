@@ -17,8 +17,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.mykescraft.model.Accessory;
+import com.mykescraft.model.Button;
 import com.mykescraft.model.Hilt;
 import com.mykescraft.model.Led;
+import com.mykescraft.model.Soundcard;
 import com.mykescraft.repositoryimpl.AccessoryRepositoryImpl;
 import com.mykescraft.serviceimpl.AccessoryServiceImpl;
 
@@ -37,10 +39,22 @@ public class AccessoryServiceTest {
 	private Led led;
 	
 	@Mock
+	private Soundcard soundcard;
+	
+	@Mock
+	private Button button;
+	
+	@Mock
 	private ArrayList<Led> ledList;
 	
 	@Mock
 	private ArrayList<Hilt> hiltList;
+	
+	@Mock
+	private ArrayList<Soundcard> soundcardList;
+	
+	@Mock
+	private ArrayList<Button> buttonList;
 	
 	@Before
 	public void init() {
@@ -89,6 +103,48 @@ public class AccessoryServiceTest {
 	    ArrayList<Hilt> retrievedHiltList = accessoryService.findAllHilts();
 	    // Assert
 	    assertThat(retrievedHiltList, is(equalTo(hiltList)));
+	}	
+	
+	@Test
+	public void shouldReturnSoundcard_whenFindSoundcardByIdIsCalled() throws Exception {
+	    // Arrange
+	    when(accessoryRepo.findSoundcardById(8)).thenReturn(soundcard);
+	    // Act
+	    Accessory retrievedAccessory = accessoryService.findSoundcardById(8);
+	    // Assert
+	    assertThat(retrievedAccessory, is(equalTo(soundcard)));
+	    verify(accessoryRepo).findSoundcardById(8);
+	}
+	
+	@Test
+	public void shouldReturnSoundcardList_whenFindAllSoundcardIsCalled() throws Exception {
+	    // Arrange
+	    when(accessoryRepo.findAllSoundcards()).thenReturn(soundcardList);
+	    // Act
+	    ArrayList<Soundcard> retrievedSoundcardList = accessoryService.findAllSoundcards();
+	    // Assert
+	    assertThat(retrievedSoundcardList, is(equalTo(soundcardList)));
+	}	
+	
+	@Test
+	public void shouldReturnButton_whenFindButtonByIdIsCalled() throws Exception {
+	    // Arrange
+	    when(accessoryRepo.findButtonById(11)).thenReturn(button);
+	    // Act
+	    Accessory retrievedAccessory = accessoryService.findButtonById(11);
+	    // Assert
+	    assertThat(retrievedAccessory, is(equalTo(button)));
+	    verify(accessoryRepo).findButtonById(11);
+	}
+	
+	@Test
+	public void shouldReturnButtonList_whenFindAllButtonIsCalled() throws Exception {
+	    // Arrange
+	    when(accessoryRepo.findAllButtons()).thenReturn(buttonList);
+	    // Act
+	    ArrayList<Button> retrievedButtonList = accessoryService.findAllButtons();
+	    // Assert
+	    assertThat(retrievedButtonList, is(equalTo(buttonList)));
 	}	
 	
 }	

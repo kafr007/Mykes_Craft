@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import com.mykescraft.model.Button;
 import com.mykescraft.model.Hilt;
 import com.mykescraft.model.Led;
 import com.mykescraft.model.Soundcard;
@@ -53,6 +54,16 @@ public class AccessoryServiceImpl implements AccessoryService {
 
 	public void setAccessoryRepo(AccessoryRepositoryImpl accessoryRepo) {
 		this.accessoryRepo = accessoryRepo;
+	}
+
+	@Override
+	public ArrayList<Button> findAllButtons() {
+		return accessoryRepo.findAllButtons();
+	}
+
+	@Override
+	public Button findButtonById(long id) {
+		return accessoryRepo.findButtonById(id);
 	}
 	
 }
