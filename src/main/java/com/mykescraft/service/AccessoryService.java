@@ -3,6 +3,7 @@ package com.mykescraft.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mykescraft.model.Blade;
 import com.mykescraft.model.Button;
 import com.mykescraft.model.Hilt;
 import com.mykescraft.model.Led;
@@ -18,6 +19,8 @@ public interface AccessoryService {
 	
 	ArrayList<Button> findAllButtons();
 	
+	ArrayList<Blade> findAllBlades();
+	
 	Hilt findHiltById(long id);
 	
 	Led findLedById(long id);
@@ -25,5 +28,7 @@ public interface AccessoryService {
 	Soundcard findSoundcardById(long id);
 
 	Button findButtonById(long id);
+	
+	Blade findBladeById(long id);
 	
 }

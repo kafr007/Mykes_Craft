@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import com.mykescraft.model.Blade;
 import com.mykescraft.model.Button;
 import com.mykescraft.model.Hilt;
 import com.mykescraft.model.Led;
@@ -64,6 +65,16 @@ public class AccessoryServiceImpl implements AccessoryService {
 	@Override
 	public Button findButtonById(long id) {
 		return accessoryRepo.findButtonById(id);
+	}
+
+	@Override
+	public ArrayList<Blade> findAllBlades() {
+		return accessoryRepo.findAllBlades();
+	}
+
+	@Override
+	public Blade findBladeById(long id) {
+		return accessoryRepo.findBladeById(id);
 	}
 	
 }

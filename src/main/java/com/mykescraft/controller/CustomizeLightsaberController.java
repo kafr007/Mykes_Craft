@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mykescraft.model.Accessory;
+import com.mykescraft.model.Blade;
 import com.mykescraft.model.Button;
 import com.mykescraft.model.Customer;
 import com.mykescraft.model.Hilt;
@@ -151,6 +152,33 @@ public class CustomizeLightsaberController {
 			shoppingCartService.addProductToCart(button);
 			log.debug("button list.size" + shoppingCartService.getList().size());
 			log.debug("button price" + shoppingCartService.getAmount());
+
+		} catch (AccessoryTypeAlreadyInTheCartException e) {
+			e.printStackTrace();
+		}
+		return "redirect:/blade";
+	}
+	
+	@GetMapping("/blade")
+	public String displayBlade(Model model) {
+		model.addAttribute("blades", accessoryService.findAllBlades());
+
+		log.debug("list.size" + shoppingCartService.getList().size());
+		return "blade";
+	}
+
+	@RequestMapping({ "/chooseablade" })
+	public String chooseABlade(HttpServletRequest request, Model model,
+			@RequestParam(value = "id", defaultValue = "") String id) {
+		log.debug("Beléptem a bladbe");
+		log.debug("blade id" + id);
+		Blade blade = accessoryService.findBladeById(Integer.parseInt(id));
+		log.debug(blade.getName());
+		log.debug("" + blade.getPrice());
+		try {
+			shoppingCartService.addProductToCart(blade);
+			log.debug("blade list.size" + shoppingCartService.getList().size());
+			log.debug("blade price" + shoppingCartService.getAmount());
 
 		} catch (AccessoryTypeAlreadyInTheCartException e) {
 			e.printStackTrace();

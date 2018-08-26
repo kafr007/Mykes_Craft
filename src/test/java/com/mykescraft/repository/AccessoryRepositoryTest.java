@@ -21,6 +21,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.mykescraft.MykesCraftApplication;
+import com.mykescraft.model.Blade;
 import com.mykescraft.model.Button;
 import com.mykescraft.model.Hilt;
 import com.mykescraft.model.Led;
@@ -119,5 +120,22 @@ public class AccessoryRepositoryTest {
 		assert(button.getPrice()==14.5);
 		assertEquals(button.getImageUrl(), "https://i.imgur.com/3PeebMf.jpg");
 	}
+	
+	@Test
+	public void testFindBladeById1() {
+		Blade blade = accessoryRepo.findBladeById(13);
+		assertNotNull(blade);
+	}
+	
+	@Test
+	public void testFindBladeById2() {
+		Blade blade = accessoryRepo.findBladeById(14);
+		assertEquals(blade.getName(), "Blade2");
+		assert(blade.getPrice()==12.5);
+		assertEquals(blade.getTip(), "rounded");
+		assertEquals(blade.getWallThickness(), "thin");
+		assertEquals(blade.getImageUrl(), "https://i.imgur.com/5xcJMOk.jpg");
+	}
+
 
 }

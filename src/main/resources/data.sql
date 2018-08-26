@@ -34,4 +34,12 @@ values ('Button2', 12.5, 'https://i.imgur.com/Qer5mA5.jpg', 'button');
 insert into accessories(name, price, image_url,accessory_type)
 values ('Button3', 14.5,'https://i.imgur.com/3PeebMf.jpg', 'button');
 
+insert into accessories(name, price, tip, length, wall_thickness, image_url, accessory_type)
+values ('Blade1', 25.5, 'rounded', 300, 'thick','https://i.imgur.com/PUMG1QF.jpg', 'blade');
+
+insert into accessories(name, price, tip, length, wall_thickness, image_url, accessory_type)
+values ('Blade2', 12.5, 'rounded', 300, 'thin', 'https://i.imgur.com/5xcJMOk.jpg', 'blade');
+
+insert into accessories(name, price, tip, length, wall_thickness, image_url,accessory_type)
+values ('Blade3', 14.5,'bullet', 330, 'thick','https://i.imgur.com/2OrwlcO.jpg', 'blade');
 

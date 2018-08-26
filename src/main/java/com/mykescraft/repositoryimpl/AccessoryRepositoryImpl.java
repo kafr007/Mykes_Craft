@@ -31,16 +31,16 @@ public class AccessoryRepositoryImpl implements AccessoryRepository {
 	private final String IMAGEURL = "image_url";
 	private final String LENGTH = "length";
 	private final String TIP = "tip";
-	private final String WALLTHICKNESS = "walthickness";
+	private final String WALLTHICKNESS = "wall_thickness";
 	private final String COLOR = "color";
 	
-	private final String FINDALLBLADESQL = "select id, name, price, image_url, tip, length, wallthickness from accessories where accessory_type='blade'";
+	private final String FINDALLBLADESQL = "select id, name, price, image_url, tip, length, wall_thickness from accessories where accessory_type='blade'";
 	private final String FINDALLBUTTONSQL = "select id, name, price, image_url from accessories where accessory_type='button'";
 	private final String FINDALLHILTSQL = "select id, name, price, image_url from accessories where accessory_type='hilt'";
 	private final String FINDALLLEDSQL = "select id, name, price, image_url, color from accessories where accessory_type='led'";
 	private final String FINDALLSOUNDCARDSQL = "select id, name, price, image_url from accessories where accessory_type='soundcard'";
 	
-	private final String FINDBLADEBYIDSQL = "select id, name, price, image_url, tip, length, wallthickness from accessories WHERE ID = ?";
+	private final String FINDBLADEBYIDSQL = "select id, name, price, image_url, tip, length, wall_thickness from accessories WHERE ID = ?";
 	private final String FINDBUTTONBYIDSQL = "select id, name, price, image_url from accessories WHERE ID = ?";
 	private final String FINDHILTBYIDSQL = "select id, name, price, image_url from accessories WHERE ID = ?";
 	private final String FINDLEDBYIDSQL = "select id, name, price, image_url, color from accessories WHERE ID = ?";

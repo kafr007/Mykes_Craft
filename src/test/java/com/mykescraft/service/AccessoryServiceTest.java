@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.mykescraft.model.Accessory;
+import com.mykescraft.model.Blade;
 import com.mykescraft.model.Button;
 import com.mykescraft.model.Hilt;
 import com.mykescraft.model.Led;
@@ -45,6 +46,9 @@ public class AccessoryServiceTest {
 	private Button button;
 	
 	@Mock
+	private Blade blade;
+	
+	@Mock
 	private ArrayList<Led> ledList;
 	
 	@Mock
@@ -55,6 +59,9 @@ public class AccessoryServiceTest {
 	
 	@Mock
 	private ArrayList<Button> buttonList;
+	
+	@Mock
+	private ArrayList<Blade> bladeList;
 	
 	@Before
 	public void init() {
@@ -145,6 +152,27 @@ public class AccessoryServiceTest {
 	    ArrayList<Button> retrievedButtonList = accessoryService.findAllButtons();
 	    // Assert
 	    assertThat(retrievedButtonList, is(equalTo(buttonList)));
+	}	
+	
+	@Test
+	public void shouldReturnBlade_whenFindBladeByIdIsCalled() throws Exception {
+	    // Arrange
+	    when(accessoryRepo.findBladeById(15)).thenReturn(blade);
+	    // Act
+	    Accessory retrievedAccessory = accessoryService.findBladeById(15);
+	    // Assert
+	    assertThat(retrievedAccessory, is(equalTo(blade)));
+	    verify(accessoryRepo).findBladeById(15);
+	}
+	
+	@Test
+	public void shouldReturnBladeList_whenFindAllBladeIsCalled() throws Exception {
+	    // Arrange
+	    when(accessoryRepo.findAllBlades()).thenReturn(bladeList);
+	    // Act
+	    ArrayList<Blade> retrievedBladeList = accessoryService.findAllBlades();
+	    // Assert
+	    assertThat(retrievedBladeList, is(equalTo(bladeList)));
 	}	
 	
 }	

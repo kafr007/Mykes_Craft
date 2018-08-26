@@ -57,8 +57,10 @@ public class CustomizeLightsaberControllerTest {
     private final String PATH_SOUNDCARD = "/soundcard";
     private final String VIEW_SOUNDCARD = "soundcard";
     private final String PATH_CHOOSEASOUNDCARD = "/chooseasoundcard";
-    private static final String PATH_BUTTON = "/button";
-    private static final String VIEW_BUTTON = "button";
+    private final String PATH_BUTTON = "/button";
+    private final String VIEW_BUTTON = "button";
+    private final String PATH_BLADE = "/blade";
+    private final String VIEW_BLADE = "blade";
     
     private final String CONTENTTYPE_HTML_UTF8 = "text/html;charset=UTF-8";
 	
@@ -108,6 +110,14 @@ public class CustomizeLightsaberControllerTest {
            this.mockMvc.perform(get(PATH_BUTTON))
                 .andExpect(status().isOk())
                 .andExpect(view().name(VIEW_BUTTON))
+                .andDo(print());
+    }
+    
+    @Test
+    public void tesBlade() throws Exception{
+           this.mockMvc.perform(get(PATH_BLADE))
+                .andExpect(status().isOk())
+                .andExpect(view().name(VIEW_BLADE))
                 .andDo(print());
     }
     

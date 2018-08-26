@@ -22,10 +22,18 @@
 	<h1 th:text="#{blade.info}">Choose a blade</h1>
 	<h3 th:text="#{info}">Choose one</h3>
 </div>
+<section class="teaser" th:each="blade : ${blades}">
+	<div>
+		<h1 th:text="${blade.name}">Name of the product</h1>
+		<img th:src="${blade.imageUrl}" height="150" width="200">
+		
+		<p th:utext="${blade.price} + ' EUR'">Price of the product</p>
+		<p th:text="#{blade.tip.length.wallthickness}">Tip, length, wallthickness of the product</p>
+		<p th:text="${blade.tip} + ', ' + ${blade.length} + ' mm, ' + ${blade.wallThickness}">Tip, length, wallthickness of the product</p>
+		<a th:text="#{add.to.cart}"th:href="@{|/chooseablade?id=${blade.id}|}">Buy Now</a>
+		</div>
 
-
-
-
+</section>
 <footer>
 	<p th:text="#{footer.emailaddress}">mykescraft@gmail.com</p>
 	<div class="phone">

@@ -25,7 +25,8 @@
 	<div>
 		<h1 th:text="${led.name}">Name of the product</h1>
 		<img th:src="${led.imageUrl}" height="150" width="200">
-		<p th:text="${led.price} + #{euro}">Price of the product</p>
+		<p th:text="${led.color}">Color of the product</p>
+		<p th:text="${led.price}  + ' EUR'">Price of the product</p>
 
 		<a th:text="#{add.to.cart}"th:href="@{|/choosealed?id=${led.id}|}">Buy Now</a>
 		</div>
