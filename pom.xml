@@ -100,7 +100,7 @@
 					</includes>
 					<jdkVersion>1.8</jdkVersion>
 					<configVars> <!-- add any runtime parameters as needed -->
-						<JAVA_OPTS>-Duser.timezone=Europe/Budapest DSpring.profiles.active=heroku</JAVA_OPTS>
+						<JAVA_OPTS>-Duser.timezone=Europe/Budapest -Dspring.profiles.active=heroku</JAVA_OPTS>
 					</configVars>
 					<processTypes>
 						<web>java $JAVA_OPTS -jar target/${project.artifactId}-${project.version}.jar</web>
